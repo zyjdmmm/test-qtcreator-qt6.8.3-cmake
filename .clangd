@@ -1,0 +1,5 @@
+# https://zhuanlan.zhihu.com/p/19887679131
+# 设置了.clangd半天没反应，需要按下 Ctrl + Shift + P，clangd: Restart Language Server，重启才生效，重启vscode没效果的。
+# 这破烂我真的是服了[发呆]
+CompileFlags:
+  Add: [-I, "D:\\msys2\\mingw64\\include"]
