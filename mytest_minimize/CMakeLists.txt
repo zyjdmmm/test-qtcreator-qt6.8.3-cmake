@@ -25,9 +25,7 @@ add_executable(${PROJECT_NAME}
 #
 find_package(QT NAMES Qt6 Qt5 REQUIRED) #CMake 3.19+之后，2021年Qt官方和CMake官方约定好的QT名称，cmake会去找到QT6Config.cmake，首先查找QT6，如果没有查找QT5，随后定义QT_VERSION_MAJOR变量
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
-
-# 链接 Qt 库（必需：PRIVATE 表示仅当前项目使用）
-target_link_libraries(${PROJECT_NAME} PRIVATE
+target_link_libraries(${PROJECT_NAME} PRIVATE# 链接 Qt 库（必需：PRIVATE 表示仅当前项目使用）
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Sql
 )
