@@ -1,0 +1,32 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+<qresource prefix="/">
+    <file>light.qss</file>
+    <file alias="image/image/add.png">image/add.png</file>
+    <file alias="image/image/check.png">image/check.png</file>
+    <file alias="image/image/close.png">image/close.png</file>
+    <file alias="image/image/dark_light.png">image/dark_light.png</file>
+    <file alias="image/image/default_avatar.png">image/default_avatar.png</file>
+    <file alias="image/image/del.png">image/del.png</file>
+    <file alias="image/image/dropdown.png">image/dropdown.png</file>
+    <file alias="image/image/home.png">image/home.png</file>
+    <file alias="image/image/home_choose.png">image/home_choose.png</file>
+    <file alias="image/image/hover_close.png">image/hover_close.png</file>
+    <file alias="image/image/hover_mini.png">image/hover_mini.png</file>
+    <file alias="image/image/light_dark.png">image/light_dark.png</file>
+    <file alias="image/image/loading.gif">image/loading.gif</file>
+    <file alias="image/image/mainIcon.png">image/mainIcon.png</file>
+    <file alias="image/image/mini.png">image/mini.png</file>
+    <file alias="image/image/no_del.png">image/no_del.png</file>
+    <file alias="image/image/notes.png">image/notes.png</file>
+    <file alias="image/image/null_image.png">image/null_image.png</file>
+    <file alias="image/image/pay.png">image/pay.png</file>
+    <file alias="image/image/personal.png">image/personal.png</file>
+    <file alias="image/image/pressed_close.png">image/pressed_close.png</file>
+    <file alias="image/image/pressed_mini.png">image/pressed_mini.png</file>
+    <file alias="image/image/private_send.png">image/private_send.png</file>
+    <file alias="image/image/report.png">image/report.png</file>
+    <file alias="image/image/send.png">image/send.png</file>
+    <file alias="image/image/title.jpg">image/title.jpg</file>
+</qresource>
+</RCC>
