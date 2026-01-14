@@ -13,6 +13,8 @@ int main(int argc, char *argv[])
     QString b="hello";
     QString c="hello";
     qDebug() << c;
+    int d=10;
+    qDebug() << d;
 
     QApplication a(argc, argv);
     
