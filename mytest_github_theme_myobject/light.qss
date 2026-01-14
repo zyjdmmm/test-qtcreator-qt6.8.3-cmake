@@ -8,6 +8,11 @@ QWidget {
     background-color: #ffffff;
 }
 
+/* Central Widget */
+QWidget#centralwidget {
+    background-color: #f8fcff;
+}
+
 /* Buttons */
 QPushButton {
     padding: 8px 16px;

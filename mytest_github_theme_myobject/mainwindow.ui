@@ -13,9 +13,7 @@
   <property name="windowTitle">
    <string>QSS Demo</string>
   </property>
-  <property name="styleSheet">
-   <string notr="true">background-color: #1a1a1a;</string>
-  </property>
+  
   <widget class="QWidget" name="centralwidget">
    <widget class="QFrame" name="bgFrame">
     <property name="geometry">
