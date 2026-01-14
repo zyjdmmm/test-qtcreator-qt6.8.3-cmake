@@ -14,54 +14,54 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
     
-    // QSQL测试代码
-    qDebug() << "Qt SQL测试开始...";
+    // QSQL test code
+    qDebug() << "Qt SQL test started...";
     
-    // 检查可用的数据库驱动
-    qDebug() << "可用的数据库驱动:" << QSqlDatabase::drivers();
+    // Check available database drivers
+    qDebug() << "Available database drivers:" << QSqlDatabase::drivers();
     
-    // 创建SQLite数据库连接
+    // Create SQLite database connection
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(":memory:"); // 使用内存数据库
+    db.setDatabaseName(":memory:"); // Use in-memory database
     
-    // 打开数据库
+    // Open database
     if (!db.open()) {
-        qDebug() << "数据库打开失败:" << db.lastError().text();
+        qDebug() << "Database open failed:" << db.lastError().text();
     } else {
-        qDebug() << "数据库打开成功";
+        qDebug() << "Database open succeeded";
         
-        // 创建表
+        // Create table
         QSqlQuery query;
         if (query.exec("CREATE TABLE test (id INT PRIMARY KEY, name TEXT)") ) {
-            qDebug() << "表创建成功";
+            qDebug() << "Table created successfully";
             
-            // 插入数据
+            // Insert data
             query.exec("INSERT INTO test (id, name) VALUES (1, 'Alice')");
             query.exec("INSERT INTO test (id, name) VALUES (2, 'Bob')");
             query.exec("INSERT INTO test (id, name) VALUES (3, 'Charlie')");
-            qDebug() << "数据插入成功";
+            qDebug() << "Data inserted successfully";
             
-            // 查询数据
+            // Query data
             if (query.exec("SELECT * FROM test")) {
-                qDebug() << "查询结果:";
+                qDebug() << "Query result:";
                 while (query.next()) {
                     int id = query.value(0).toInt();
                     QString name = query.value(1).toString();
                     qDebug() << "ID:" << id << "Name:" << name;
                 }
             } else {
-                qDebug() << "查询失败:" << query.lastError().text();
+                qDebug() << "Query failed:" << query.lastError().text();
             }
         } else {
-            qDebug() << "表创建失败:" << query.lastError().text();
+            qDebug() << "Table creation failed:" << query.lastError().text();
         }
         
-        // 关闭数据库
+        // Close database
         db.close();
-        qDebug() << "数据库关闭";
+        qDebug() << "Database closed";
     }
     
-    qDebug() << "Qt SQL测试结束...";
+    qDebug() << "Qt SQL test finished...";
 
     MainWindow w;
     w.show();
