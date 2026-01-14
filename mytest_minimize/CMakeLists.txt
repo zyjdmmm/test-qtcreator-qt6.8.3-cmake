@@ -12,9 +12,9 @@ set(CMAKE_AUTORCC ON)
 #
 
 #-------------------------------------------#
-# 兼容查找 Qt6/Qt5 Widgets（核心：Windows GUI 必需）
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+# 兼容查找 Qt6/Qt5 Widgets（核心：Windows GUI 必需）和SQL模块
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql)
 
 add_executable(${PROJECT_NAME} 
         main.cpp
@@ -26,7 +26,7 @@ add_executable(${PROJECT_NAME}
 
 
 # 链接 Qt 库（必需：PRIVATE 表示仅当前项目使用）
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql)
 
 
 #-------------------------------------------#
