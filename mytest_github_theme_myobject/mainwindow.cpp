@@ -32,10 +32,15 @@ void MainWindow::loadQSS()
     QFile file("://light.qss");
     if (file.open(QFile::ReadOnly)) {
         QString styleSheet = QLatin1String(file.readAll());
-
-        qDebug()<<styleSheet;
-        this->setStyleSheet(styleSheet);
+        
+        qDebug() << "QSS file loaded successfully, length:" << styleSheet.length();
+        
+        // 将样式应用到整个应用程序
+        qApp->setStyleSheet(styleSheet);
+        
         file.close();
+    } else {
+        qDebug() << "Failed to open QSS file:" << file.errorString();
     }
 }
 
