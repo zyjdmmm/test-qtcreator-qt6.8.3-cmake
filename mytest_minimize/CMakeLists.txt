@@ -1,10 +1,17 @@
 project(mytest_minimize)
 
-# Qt 核心自动编译工具（必需：处理.ui/.qrc/Q_OBJECT）
+#-------------------------------------------#
+# Qt 核心自动编译工具(固定的不用改)
+#-------------------------------------------#
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+
+#-------------------------------------------#
+#
+
+#-------------------------------------------#
 # 兼容查找 Qt6/Qt5 Widgets（核心：Windows GUI 必需）
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
@@ -21,7 +28,14 @@ add_executable(${PROJECT_NAME}
 # 链接 Qt 库（必需：PRIVATE 表示仅当前项目使用）
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-# Windows 专属配置（GUI 程序关键：隐藏控制台窗口）
+
+#-------------------------------------------#
+# 属性配置(固定的不用改)
+#-------------------------------------------#
+
+# 如果没有这个，双击exe也会弹出黑控制台
 set_target_properties(${PROJECT_NAME} PROPERTIES
-    WIN32_EXECUTABLE TRUE  # 核心：双击exe不弹出黑控制台
+    WIN32_EXECUTABLE TRUE
 )
+
+
