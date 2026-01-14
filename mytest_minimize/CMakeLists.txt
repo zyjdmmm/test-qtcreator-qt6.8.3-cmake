@@ -33,7 +33,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt$
 # 属性配置(固定的不用改)
 #-------------------------------------------#
 
-# 如果没有这个，双击exe也会弹出黑控制台
+# 如果没有这个，双击exe即使在release模式也会弹出黑控制台
 set_target_properties(${PROJECT_NAME} PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
