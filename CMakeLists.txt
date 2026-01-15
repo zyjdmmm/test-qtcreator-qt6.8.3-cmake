@@ -25,6 +25,7 @@ endif()
 # 一定要放在最后面，因为前面的设置放后面可能导致子项目先编译但是配置还没生效
 add_subdirectory(mytest_minimize)
 add_subdirectory(mytest_github_theme_myobject)
+add_subdirectory(mytest_action)
 
 
 
