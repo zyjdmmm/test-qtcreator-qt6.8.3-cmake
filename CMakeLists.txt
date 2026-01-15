@@ -23,16 +23,38 @@ endif()
 
 
 # -------------------------------------------#
-# 解决 vs2015 Update 3版本 ~vs2019编译器不识别utf-8的问题
+# 解决 vs2015 Update 3版本 ~vs2019编译器不识别utf-8的问题, ai从Qt、OpenCV偷来的 (固定配置不用改)
 # 注意:我发现必须放在顶层CMakeLists.txt，放在子项目的CMakeLists.txt没效果
-# 注意:vs2022不需要这段话
+# 注意:vs2019、vs2022我测试过没问题
 # 注意:mingw64不需要这段话
 # -------------------------------------------#
-# if(MSVC)
-#     add_compile_options("/source-charset:utf-8")# 设置源文件字符集为UTF-8（不改变文件本身编码）
-#     add_compile_options("/execution-charset:utf-8")# 设置执行字符集为UTF-8
-#     add_compile_options("/wd4819")# 禁用编码警告C4819
-# endif()
+# 仅对 MSVC 编译器设置 UTF-8 编码（兼容 VS2015 ~ VS2022）
+if (MSVC)
+    # 禁用 C4819 编码警告（全版本通用）
+    add_compile_options("/wd4819")
+
+    # MSVC_VERSION 对应关系：
+    # VS2015 = 1900, VS2017 = 1910+, VS2019 = 1920+, VS2022 = 1930+
+    if (MSVC_VERSION LESS 1920)
+        # VS2015/2017：仅支持拆分式 UTF-8 选项
+        add_compile_options("/source-charset:utf-8")
+        add_compile_options("/execution-charset:utf-8")
+    else ()
+        # VS2019/2022：使用合并式 /utf-8（避免和默认配置冲突）
+        add_compile_options("/utf-8")
+    endif ()
+
+    # 额外：确保不会同时出现两种 UTF-8 选项（防御性处理）
+    string(REPLACE "/source-charset:utf-8" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+    string(REPLACE "/execution-charset:utf-8" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+    string(REPLACE "/utf-8" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+    # 重新添加适配版本的选项（覆盖可能的冲突配置）
+    if (MSVC_VERSION LESS 1920)
+        list(APPEND CMAKE_CXX_FLAGS "/source-charset:utf-8" "/execution-charset:utf-8")
+    else ()
+        list(APPEND CMAKE_CXX_FLAGS "/utf-8")
+    endif ()
+endif ()
 
 
 
