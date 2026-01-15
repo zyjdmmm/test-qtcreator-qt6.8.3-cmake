@@ -1,6 +1,13 @@
 project(mytest_minimize)
 
 #-------------------------------------------#
+# 基础配置
+#-------------------------------------------#
+cmake_minimum_required(VERSION 3.16)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+#-------------------------------------------#
 # Qt 核心自动编译工具(固定的不用改)
 #-------------------------------------------#
 set(CMAKE_AUTOUIC ON)
@@ -8,8 +15,9 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 
+
 #-------------------------------------------#
-#手动添加你的源文件
+# 手动添加你的源文件
 #-------------------------------------------#
 add_executable(${PROJECT_NAME} 
         main.cpp

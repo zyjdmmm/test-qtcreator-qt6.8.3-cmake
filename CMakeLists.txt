@@ -22,6 +22,19 @@ if(NOT CMAKE_BUILD_TYPE)
 endif()
 
 
+# -------------------------------------------#
+# 解决 vs2015 Update 3版本 ~vs2019编译器不识别utf-8的问题
+# 注意:我发现必须放在顶层CMakeLists.txt，放在子项目的CMakeLists.txt没效果
+# 注意:vs2022不需要这段话
+# 注意:mingw64不需要这段话
+# -------------------------------------------#
+if(MSVC)
+    add_compile_options("/source-charset:utf-8")# 设置源文件字符集为UTF-8（不改变文件本身编码）
+    add_compile_options("/execution-charset:utf-8")# 设置执行字符集为UTF-8
+    add_compile_options("/wd4819")# 禁用编码警告C4819
+endif()
+
+
 # 一定要放在最后面，因为前面的设置放后面可能导致子项目先编译但是配置还没生效
 add_subdirectory(mytest_minimize)
 add_subdirectory(mytest_github_theme_myobject)
