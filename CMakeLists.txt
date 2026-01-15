@@ -28,11 +28,11 @@ endif()
 # 注意:vs2022不需要这段话
 # 注意:mingw64不需要这段话
 # -------------------------------------------#
-if(MSVC)
-    add_compile_options("/source-charset:utf-8")# 设置源文件字符集为UTF-8（不改变文件本身编码）
-    add_compile_options("/execution-charset:utf-8")# 设置执行字符集为UTF-8
-    add_compile_options("/wd4819")# 禁用编码警告C4819
-endif()
+# if(MSVC)
+#     add_compile_options("/source-charset:utf-8")# 设置源文件字符集为UTF-8（不改变文件本身编码）
+#     add_compile_options("/execution-charset:utf-8")# 设置执行字符集为UTF-8
+#     add_compile_options("/wd4819")# 禁用编码警告C4819
+# endif()
 
 
 # 一定要放在最后面，因为前面的设置放后面可能导致子项目先编译但是配置还没生效

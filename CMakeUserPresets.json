@@ -1,0 +1,112 @@
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "Qt-Debug",
+      "inherits": "Qt-Default",
+      "binaryDir": "${sourceDir}/out/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_FLAGS": "-DQT_QML_DEBUG"
+      },
+      "environment": {
+        "QML_DEBUG_ARGS": "-qmljsdebugger=file:{63c03ea3-0ca3-4d79-a518-332f91ae9ff8},block"
+      }
+    },
+    {
+      "name": "Qt-Release",
+      "inherits": "Qt-Default",
+      "binaryDir": "${sourceDir}/out/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+    {
+      "hidden": true,
+      "name": "Qt-Default",
+      "inherits": "6.8.3_msvc2022_64",
+      "vendor": {
+        "qt-project.org/Default": {
+          "checksum": "daN6rj4NJrkhJXNlYvTiZSjCI3w="
+        }
+      }
+    },
+    {
+      "hidden": true,
+      "name": "5.11.3_msvc2015_64",
+      "inherits": "Qt",
+      "environment": {
+        "QTDIR": "D:/qt5.11.3/5.11.3/msvc2015_64"
+      },
+      "architecture": {
+        "strategy": "external",
+        "value": "x64"
+      },
+      "generator": "Ninja",
+      "vendor": {
+        "qt-project.org/Version": {
+          "checksum": "yXC/aUzN0T6h3fwQu8Tp8dVkvSs="
+        }
+      }
+    },
+    {
+      "hidden": true,
+      "name": "5.15.2_msvc2019_64",
+      "inherits": "Qt",
+      "environment": {
+        "QTDIR": "D:/qt5.15.2/5.15.2/msvc2019_64"
+      },
+      "architecture": {
+        "strategy": "external",
+        "value": "x64"
+      },
+      "generator": "Ninja",
+      "vendor": {
+        "qt-project.org/Version": {
+          "checksum": "4MaKWMdNIF7nBVSD1gU+nHeH1Nk="
+        }
+      }
+    },
+    {
+      "hidden": true,
+      "name": "6.8.3_msvc2022_64",
+      "inherits": "Qt",
+      "environment": {
+        "QTDIR": "D:/Qt6.8.3/6.8.3/msvc2022_64"
+      },
+      "architecture": {
+        "strategy": "external",
+        "value": "x64"
+      },
+      "generator": "Ninja",
+      "vendor": {
+        "qt-project.org/Version": {
+          "checksum": "YGqc1ro0iTw1kzdZ7HIBtxqTDRk="
+        }
+      }
+    },
+    {
+      "hidden": true,
+      "name": "Qt5.11.3_vs2015_x86",
+      "inherits": "Qt",
+      "environment": {
+        "QTDIR": "D:/qt5.11.3/5.11.3/msvc2015"
+      },
+      "architecture": {
+        "strategy": "external",
+        "value": "x86"
+      },
+      "generator": "Ninja",
+      "vendor": {
+        "qt-project.org/Version": {
+          "checksum": "ej1jON+MkH2V/ro3ZonW24pEjtg="
+        }
+      }
+    }
+  ],
+  "vendor": {
+    "qt-project.org/Presets": {
+      "checksum": "8Psb3SNKhte4Ym2D/R04f0nmiCo="
+    }
+  }
+}
