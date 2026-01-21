@@ -8,6 +8,8 @@
 *build*
 .qtcreator/
 
+# clion说这个不能加入
+CMakeUserPresets.json
 
 # User-specific files
 *.rsuser
