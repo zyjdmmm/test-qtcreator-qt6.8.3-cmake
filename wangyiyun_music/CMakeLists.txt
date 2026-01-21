@@ -1,37 +1,45 @@
-cmake_minimum_required(VERSION 3.16)
+project(wangyiyun_music)
 
-project(wangyiyun_music VERSION 0.1 LANGUAGES CXX)
-
+#-------------------------------------------#
+# Qt 核心自动编译工具(固定的不用改)
+#-------------------------------------------#
+# set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+# set(CMAKE_AUTORCC ON)
+# qt_standard_project_setup() # Qt6新增：自动设置C++标准、AUTOMOC等默认配置
 
-find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
+#-------------------------------------------#
+#手动添加你的源文件
+#-------------------------------------------#
+find_package(Qt6 6.2 COMPONENTS Quick REQUIRED) #cmake与qt有狗屁交易，找到了qt自定义的函数
 
-qt_add_executable(appwangyiyun_music
+qt_add_executable(${PROJECT_NAME}
     main.cpp
 )
 
-qt_add_qml_module(appwangyiyun_music
-    URI wangyiyun_music
-    VERSION 1.0
-    QML_FILES main.qml 
-)
 
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
-set_target_properties(appwangyiyun_music PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appwangyiyun_music
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
-)
 
-target_link_libraries(appwangyiyun_music
+#-------------------------------------------#
+#查找qt提供的库
+#-------------------------------------------#
+target_link_libraries(${PROJECT_NAME}
     PRIVATE Qt6::Quick)
 
-include(GNUInstallDirs)
-install(TARGETS appwangyiyun_music
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+
+#-------------------------------------------#
+#资源文件
+#-------------------------------------------#
+qt_add_qml_module(${PROJECT_NAME}
+    URI wangyiyun_music
+    VERSION 1.0
+    QML_FILES main.qml
+)
+
+
+#-------------------------------------------#
+# 属性配置(固定的不用改)
+#-------------------------------------------#
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    WIN32_EXECUTABLE TRUE                        # 如果没有这个，双击exe即使在release模式也会弹出黑控制台
+)
+
