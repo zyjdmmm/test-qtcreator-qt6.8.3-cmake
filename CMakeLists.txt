@@ -69,3 +69,4 @@ add_subdirectory(musicbox)
 
 
 
+add_subdirectory(wangyiyun_music)
