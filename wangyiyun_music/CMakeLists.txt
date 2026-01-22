@@ -34,6 +34,7 @@ qt_add_qml_module(${PROJECT_NAME}
     URI ${PROJECT_NAME}
     VERSION 1.0
     QML_FILES main.qml
+    RESOURCES image.qrc
 )
 
 
