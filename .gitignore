@@ -7,6 +7,7 @@
 #忽略所有名称中包含 "build" 的文件（任意位置）
 *build*
 .qtcreator/
+.idea/
 
 # clion说这个不能加入
 CMakeUserPresets.json
