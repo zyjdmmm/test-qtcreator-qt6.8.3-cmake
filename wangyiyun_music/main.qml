@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Window
+import Qt5Compat.GraphicalEffects
 
 Window {
     id:window
@@ -64,6 +65,27 @@ Window {
                     width: 15
                     fillMode: Image.PreserveAspectFit  // 核心：等比缩放
 
+                    //实现图片高亮(没办法只能用qt5，qt6连ai都没搞明白怎么弄)
+                    layer.enabled: false
+                    layer.effect: ColorOverlay {
+                        source: minModeImg
+                        color: "white"
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        hoverEnabled: true
+
+                        onEntered: {
+                            minModeImg.layer.enabled = true
+                        }
+                        onExited: {
+                            minModeImg.layer.enabled = false
+                        }
+                        onPressed: {
+                            Qt.quit()
+                        }
+                    }
+
                 }
 
                 // 最小化按钮
@@ -124,7 +146,33 @@ Window {
                     width: 20
                     fillMode: Image.PreserveAspectFit  // 核心：等比缩放
 
+                    //实现图片高亮(没办法只能用qt5，qt6连ai都没搞明白怎么弄)
+                    layer.enabled: false
+                    layer.effect: ColorOverlay {
+                        source: closeImg
+                        color: "white"
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        hoverEnabled: true
+
+                        onEntered: {
+                            closeImg.layer.enabled = true
+                        }
+                        onExited: {
+                            closeImg.layer.enabled = false
+                        }
+                        onPressed: {
+                            Qt.quit()
+                        }
+                    }
+
+
+
                 }
+
+
+
 
 
             }
