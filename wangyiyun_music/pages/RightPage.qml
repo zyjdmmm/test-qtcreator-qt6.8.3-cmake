@@ -39,6 +39,10 @@ Rectangle {
                         width: 15
                         fillMode: Image.PreserveAspectFit  // 核心：等比缩放
 
+                        //抗锯齿
+                        smooth: true
+                        mipmap: true
+
                         anchors.centerIn: parent  // 图标在圆形中居中
                         source: "qrc:/image/user.svg"
 
@@ -127,6 +131,10 @@ Rectangle {
             width: 15
             fillMode: Image.PreserveAspectFit  // 核心：等比缩放
 
+            //抗锯齿
+            smooth: true
+            mipmap: true
+
             // 颜色叠加效果
             layer.effect: ColorOverlay {
                 color: "white"
@@ -160,6 +168,10 @@ Rectangle {
             // 只设置一个维度，另一个维度自动等比缩放
             width: 15
             fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+            //抗锯齿
+            smooth: true
+            mipmap: true
 
             // 颜色叠加效果
             layer.effect: ColorOverlay {
@@ -195,6 +207,9 @@ Rectangle {
             width: 15
             fillMode: Image.PreserveAspectFit  // 核心：等比缩放
 
+            //抗锯齿
+            smooth: true
+            mipmap: true
 
             // 颜色叠加效果
             layer.effect: ColorOverlay {
@@ -229,6 +244,10 @@ Rectangle {
             // 只设置一个维度，另一个维度自动等比缩放
             width: 15
             fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+            //抗锯齿
+            smooth: true
+            mipmap: true
 
             // 颜色叠加效果
             layer.effect: ColorOverlay {
@@ -293,6 +312,10 @@ Rectangle {
                 // 只设置一个维度，另一个维度自动等比缩放
                 width: 15
                 fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+                //抗锯齿
+                smooth: true
+                mipmap: true
 
                 //实现图片高亮(没办法只能用qt5，qt6连ai都没搞明白怎么弄)
                 layer.enabled: false
@@ -374,6 +397,10 @@ Rectangle {
                 // 只设置一个维度，另一个维度自动等比缩放
                 width: 15
                 fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+                //抗锯齿
+                smooth: true
+                mipmap: true
 
                 //实现图片高亮(没办法只能用qt5，qt6连ai都没搞明白怎么弄)
                 layer.enabled: false
