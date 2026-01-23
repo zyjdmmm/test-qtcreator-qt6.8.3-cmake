@@ -7,28 +7,24 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+
+#-------------------------------------------#
+#这句找qt自定义的函数狗屎必须放在最开头
+#-------------------------------------------#
+find_package(Qt6 6.2 COMPONENTS Quick REQUIRED) #cmake与qt有狗屁交易，找到了qt自定义的函数
+
 #-------------------------------------------#
 #手动添加你的源文件
 #-------------------------------------------#
-
-#等会优化这一句
-find_package(Qt6 6.2 COMPONENTS Quick REQUIRED) #cmake与qt有狗屁交易，找到了qt自定义的函数
-
 qt_add_executable(${PROJECT_NAME}
     main.cpp
 )
 
-
-
 #-------------------------------------------#
-#查找qt提供的库
-#-------------------------------------------#
-target_link_libraries(${PROJECT_NAME}
-    PRIVATE Qt6::Quick)
-
-
-#-------------------------------------------#
-#资源文件
+# 资源文件
+#
+# 用qt_add_resources：只能通过 engine.load(QUrl(":/xxx.qml")) 直接加载，无法 import
+# 用qt_add_qml_module：可通过 import 模块名导入使用，是 Qt 6 推荐的 QML 组件化方式
 #-------------------------------------------#
 qt_add_qml_module(${PROJECT_NAME}
     URI ${PROJECT_NAME}
@@ -36,6 +32,12 @@ qt_add_qml_module(${PROJECT_NAME}
     QML_FILES main.qml
     RESOURCES image.qrc
 )
+
+#-------------------------------------------#
+#最后链接qt提供的库
+#-------------------------------------------#
+target_link_libraries(${PROJECT_NAME}
+    PRIVATE Qt6::Quick)
 
 
 #-------------------------------------------#
