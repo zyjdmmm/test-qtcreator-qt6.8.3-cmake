@@ -7,5 +7,8 @@
         <file>image/user.svg</file>
         <file>image/close.svg</file>
         <file>image/min.svg</file>
+        <file>image/return.svg</file>
+        <file>image/search.svg</file>
+        <file>image/singer.svg</file>
     </qresource>
 </RCC>

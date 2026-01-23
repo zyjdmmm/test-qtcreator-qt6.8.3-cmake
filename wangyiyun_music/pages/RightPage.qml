@@ -5,121 +5,192 @@ import QtQuick.Controls
 
 Rectangle {
 
-    //其他各种图标
+    property int spacingCommon: 10
+
+    //搜索框
+    Row {
+        id: searchRow
+        spacing: spacingCommon
+        anchors.left: parent.left
+        anchors.leftMargin: 20
+        anchors.verticalCenter: ohterRow.verticalCenter
+
+        // 返回
+        Rectangle {
+            id: backForwardRect
+            width: 24
+            height: 35
+            radius: 4
+            color: "transparent"
+            border.width: 1
+            border.color: "#2b2b31"
+
+            Image {
+                anchors.centerIn: parent
+                source: "qrc:/image/return.svg"
+
+                // 只设置一个维度，另一个维度自动等比缩放
+                width: 15
+                fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+                //抗锯齿
+                smooth: true
+                mipmap: true
+            }
+        }
+
+        // 搜索输入框
+        TextField {
+            id: searchTextField
+            height: backForwardRect.height
+            width: 240
+        }
+
+
+        //歌唱按钮
+        Rectangle {
+            id: soundHoundRect
+            radius: 8
+            height: backForwardRect.height
+            width: height
+            color: "#241c26"
+            border.color: "#36262f"
+            border.width: 1
+            // z: 100
+
+            // 录音图标
+            Image {
+                anchors.centerIn: parent
+                source: "qrc:/image/singer.svg"
+
+                // 只设置一个维度，另一个维度自动等比缩放
+                width: 15
+                fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+                //抗锯齿
+                smooth: true
+                mipmap: true
+
+            }
+
+            // 鼠标悬停交互
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+
+                onEntered: {
+                    soundHoundRect.color = "#241c26"
+                }
+
+                onExited: {
+                    soundHoundRect.color = "#241c26"
+                }
+            }
+        }
+
+
+    }
+
+    //一箩筐小图标
     Row{
         id:ohterRow
-        spacing: 5
+        spacing: spacingCommon
         anchors.verticalCenter: minMaxExit.verticalCenter
         anchors.right: minMaxExit.left
         anchors.rightMargin: 10
 
+        // 圆形用户头像
+        Rectangle {
+            id: userIconRect
+            width: 25
+            height: width  // 保证是正方形
+            radius: width / 2  // 设置为圆形
+            color: "#d2d3d7"
+
+            // 用户图标
+            Image {
+                // 只设置一个维度，另一个维度自动等比缩放
+                width: 15
+                fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+                //抗锯齿
+                smooth: true
+                mipmap: true
+
+                anchors.centerIn: parent  // 图标在圆形中居中
+                source: "qrc:/image/user.svg"
+
+            }
+        }
+
+        // 未登录文本
+        Text {
+            id: loadStateText
+            text: "未登录"
+            color: "#75777f"
+            font.pixelSize: 14
+            font.family: "微软雅黑 Light"
+            anchors.verticalCenter: userIconRect.verticalCenter  // 与图标垂直居中对齐
+
+            // 文本鼠标悬停交互
+            MouseArea {
+                anchors.fill: parent  // 覆盖整个文本区域
+                hoverEnabled: true  // 启用悬停检测
+
+                // 鼠标进入时文本变白色
+                onEntered: {
+                    loadStateText.color = "white"
+                }
+                // 鼠标离开时恢复原颜色
+                onExited: {
+                    loadStateText.color = "#75777f"
+                }
+            }
+        }
+
         //vip
-        Item {//尽量用透明的矩形，运行效率更高
-            height:30
-            width:140
+        Item {
+            height: userIconRect.height
+            width: loadStateText.implicitWidth * 1.2
             anchors.verticalCenter: parent.verticalCenter
 
-
-            Row {
-                // 整体垂直居中
+            // VIP 标签背景
+            Rectangle {
+                id: vipRect
+                width: parent.width
+                height: 12
+                radius: height / 2
+                color: "#dadada"
+                anchors.left: parent.left
                 anchors.verticalCenter: parent.verticalCenter
-                spacing: 8
 
-                // 圆形用户图标容器
-                Rectangle {
-                    id: userIconRect
-                    width: 25
-                    height: width  // 保证是正方形
-                    radius: width / 2  // 设置为圆形
-                    color: "#d2d3d7"
-
-                    // 用户图标
-                    Image {
-                        // 只设置一个维度，另一个维度自动等比缩放
-                        width: 15
-                        fillMode: Image.PreserveAspectFit  // 核心：等比缩放
-
-                        //抗锯齿
-                        smooth: true
-                        mipmap: true
-
-                        anchors.centerIn: parent  // 图标在圆形中居中
-                        source: "qrc:/image/user.svg"
-
-                    }
-                }
-
-                // 未登录文本
-                Text {
-                    id: loadStateText
-                    text: "未登录"
-                    color: "#75777f"
-                    font.pixelSize: 14
+                // VIP 标签文本
+                Label {
+                    text: "VIP开通"
+                    anchors.left: parent.left
+                    anchors.leftMargin: parent.radius * 2 + 5
+                    color: "#f9f9f9"
+                    font.pixelSize: parent.height / 2 + 2
                     font.family: "微软雅黑 Light"
-                    anchors.verticalCenter: userIconRect.verticalCenter  // 与图标垂直居中对齐
-
-                    // 文本鼠标悬停交互
-                    MouseArea {
-                        anchors.fill: parent  // 覆盖整个文本区域
-                        hoverEnabled: true  // 启用悬停检测
-
-                        // 鼠标进入时文本变白色
-                        onEntered: {
-                            loadStateText.color = "white"
-                        }
-                        // 鼠标离开时恢复原颜色
-                        onExited: {
-                            loadStateText.color = "#75777f"
-                        }
-                    }
-                }
-
-                // 会员标识
-                Item {
-                    height: userIconRect.height
-                    width: loadStateText.implicitWidth * 1.2
                     anchors.verticalCenter: parent.verticalCenter
-
-                    // VIP 标签背景
-                    Rectangle {
-                        id: vipRect
-                        width: parent.width
-                        height: 12
-                        radius: height / 2
-                        color: "#dadada"
-                        anchors.left: parent.left
-                        anchors.verticalCenter: parent.verticalCenter
-
-                        // VIP 标签文本
-                        Label {
-                            text: "VIP开通"
-                            anchors.left: parent.left
-                            anchors.leftMargin: parent.radius * 2 + 5
-                            color: "#f9f9f9"
-                            font.pixelSize: parent.height / 2 + 2
-                            font.family: "微软雅黑 Light"
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
-                    }
-
-                    // 外层边框矩形
-                    Rectangle {
-                        id: bgBordRect
-                        width: vipRect.height + 4
-                        height: width
-                        radius: width / 2
-                        color: "#dadada"
-                        border.width: 1
-                        border.color: "#13131a"
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
                 }
             }
 
+            // 外层边框矩形
+            Rectangle {
+                id: bgBordRect
+                width: vipRect.height + 4
+                height: width
+                radius: width / 2
+                color: "#dadada"
+                border.width: 1
+                border.color: "#13131a"
+                anchors.verticalCenter: parent.verticalCenter
+            }
         }
 
 
-        // 登录下拉图标
+        // 下拉图标
         Image {
             id: loginImg
             anchors.verticalCenter: parent.verticalCenter
@@ -283,7 +354,7 @@ Rectangle {
     }
 
 
-    //右侧的顶部的缩小放大退出
+    //缩小放大退出
     //尽量用Item而不是Rectangle布局，性能更高，而且Item是透明的
     Item {
 
@@ -292,12 +363,12 @@ Rectangle {
         anchors.right: parent.right
         anchors.top: parent.top
         height: 50
-        width: 180
+        width: 120
 
         //行布局
         Row {
             id: minRow
-            spacing: 15
+            spacing: spacingCommon
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
             anchors.rightMargin: 0.02*window.width
