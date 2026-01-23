@@ -3,7 +3,7 @@ import QtQuick.Window
 import Qt5Compat.GraphicalEffects
 
 
-Item{
-    id:aaa
+Rectangle {
+    // id: leftRect//似乎不需要
 
 }

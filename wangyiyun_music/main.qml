@@ -2,8 +2,8 @@ import QtQuick
 import QtQuick.Window
 import Qt5Compat.GraphicalEffects
 
-// import './aaaaa.qml'
-import "pages"
+
+import "pages"//为什么只能导入文件夹并只能加入cmake编译???
 
 
 Window {
@@ -44,8 +44,9 @@ Window {
           Qt.WindowMaximizeButtonHint |
           Qt.WindowMinimizeButtonHint
 
+
     // 左侧区域
-    Rectangle {
+    LeftPage{
         id: leftRect
         width: 255
         anchors.top: parent.top
