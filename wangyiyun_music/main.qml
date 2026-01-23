@@ -14,6 +14,7 @@ Window {
     title: qsTr("Hello World")
 
 
+    /************************************************************/
     //解决窗口无法拖动的问题
     //注意必须放在最前面不然会阻挡后面的按钮
     MouseArea {
@@ -44,6 +45,8 @@ Window {
           Qt.WindowMaximizeButtonHint |
           Qt.WindowMinimizeButtonHint
 
+    /************************************************************/
+
 
     // 左侧区域
     LeftPage{
@@ -55,7 +58,6 @@ Window {
     }
 
     // 右侧区域
-
     RightPage{
         id: rightRect
         anchors.left: leftRect.right
@@ -67,7 +69,7 @@ Window {
 
 
     // 底部区域
-    Rectangle {
+    PlayMusicPage {
         id: bottomRect
         height: 100
         anchors.left: parent.left
