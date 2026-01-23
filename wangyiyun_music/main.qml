@@ -2,6 +2,10 @@ import QtQuick
 import QtQuick.Window
 import Qt5Compat.GraphicalEffects
 
+// import './aaaaa.qml'
+import "pages"
+
+
 Window {
     id:window
     width: 1000

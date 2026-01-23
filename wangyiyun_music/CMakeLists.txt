@@ -29,7 +29,7 @@ qt_add_executable(${PROJECT_NAME}
 qt_add_qml_module(${PROJECT_NAME}
     URI ${PROJECT_NAME}
     VERSION 1.0
-    QML_FILES main.qml
+    QML_FILES main.qml pages/LeftPage.qml
     RESOURCES image.qrc
 )
 
