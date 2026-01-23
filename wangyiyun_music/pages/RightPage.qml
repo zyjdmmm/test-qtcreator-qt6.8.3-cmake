@@ -44,6 +44,64 @@ Rectangle {
             id: searchTextField
             height: backForwardRect.height
             width: 240
+            leftPadding: 40
+            topPadding: 0
+            bottomPadding: 0
+            verticalAlignment: TextInput.AlignVCenter//背景文字居中
+            placeholderTextColor: "white"
+            placeholderText: "晴天"
+            font.pixelSize: 16
+            font.family: "微软雅黑 Light"
+
+
+            // 自定义背景
+            background: Rectangle {
+                anchors.fill: parent
+                radius: 8
+                gradient: Gradient {
+                    orientation: Gradient.Horizontal
+                    GradientStop { color: "#21283d"; position: 0 }
+                    GradientStop { color: "#382635"; position: 1 }
+                }
+
+                // 内部渐变矩形
+                Rectangle {
+                    id: innerRect
+                    anchors.fill: parent
+                    anchors.margins: 1
+                    property real gradientStopPos: 1
+                    gradient: Gradient {
+                        orientation: Gradient.Horizontal
+                        GradientStop { color: "#1a1d29"; position: 0 }
+                        GradientStop { color: "#241c26"; position: innerRect.gradientStopPos }
+                    }
+
+                    // 搜索图标
+                    Image {
+                        id: searchIcon
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.left
+                        anchors.leftMargin: 8
+                        source: "qrc:/image/search.svg"
+
+                        // 只设置一个维度，另一个维度自动等比缩放
+                        width: 25
+                        fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+                        //抗锯齿
+                        smooth: true
+                        mipmap: true
+                    }
+
+                    // 点击交互区域
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            innerRect.gradientStopPos = 0
+                        }
+                    }
+                }
+            }
         }
 
 
