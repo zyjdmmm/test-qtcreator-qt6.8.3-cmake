@@ -40,7 +40,7 @@ Rectangle {
                         fillMode: Image.PreserveAspectFit  // 核心：等比缩放
 
                         anchors.centerIn: parent  // 图标在圆形中居中
-                        source: "qrc:/image/user.png"
+                        source: "qrc:/image/user.svg"
 
                     }
                 }
@@ -119,7 +119,7 @@ Rectangle {
         Image {
             id: loginImg
             anchors.verticalCenter: parent.verticalCenter
-            source: "qrc:/image/downButton.png"
+            source: "qrc:/image/downButton.svg"
             // rotation: -90
             layer.enabled: false
 
@@ -153,7 +153,7 @@ Rectangle {
         Image {
             id: message
             anchors.verticalCenter: parent.verticalCenter
-            source: "qrc:/image/message.png"
+            source: "qrc:/image/message.svg"
             // rotation: -90
             layer.enabled: false
 
@@ -187,13 +187,14 @@ Rectangle {
         Image {
             id: settings
             anchors.verticalCenter: parent.verticalCenter
-            source: "qrc:/image/settings.png"
+            source: "qrc:/image/settings.svg"
             // rotation: -90
             layer.enabled: false
 
             // 只设置一个维度，另一个维度自动等比缩放
             width: 15
             fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
 
             // 颜色叠加效果
             layer.effect: ColorOverlay {
@@ -221,7 +222,7 @@ Rectangle {
         Image {
             id: clothes
             anchors.verticalCenter: parent.verticalCenter
-            source: "qrc:/image/clothes.png"
+            source: "qrc:/image/clothes.svg"
             // rotation: -90
             layer.enabled: false
 
@@ -287,7 +288,7 @@ Rectangle {
             Image {
                 id:minModeImg
                 anchors.verticalCenter: parent.verticalCenter
-                source: "qrc:/image/min.png"
+                source: "qrc:/image/min.svg"
 
                 // 只设置一个维度，另一个维度自动等比缩放
                 width: 15
@@ -368,10 +369,10 @@ Rectangle {
             Image {
                 id:closeImg
                 anchors.verticalCenter: parent.verticalCenter
-                source: "qrc:/image/close.png"
+                source: "qrc:/image/close.svg"
 
                 // 只设置一个维度，另一个维度自动等比缩放
-                width: 20
+                width: 15
                 fillMode: Image.PreserveAspectFit  // 核心：等比缩放
 
                 //实现图片高亮(没办法只能用qt5，qt6连ai都没搞明白怎么弄)
