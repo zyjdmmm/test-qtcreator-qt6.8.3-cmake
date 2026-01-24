@@ -89,10 +89,18 @@ import QtQuick.Controls
                         anchors.fill: parent
                         onClicked: {
                             innerRect.gradientStopPos = 0
+                            searchPop.open()
                         }
                     }
                 }
             }
+        }
+
+        Popup{
+
+            id:searchPop
+            width: searchTextField.width
+            height: 800
         }
 
 
