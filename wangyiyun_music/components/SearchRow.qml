@@ -31,6 +31,7 @@ import QtQuick.Controls
 
 
         // 搜索输入框容器
+        //套一个Item的原因:Item 将事件分发给所有子组件,这样就能鼠标穿透到MouseArea了
         Item {
             height: backForwardRect.height
             width: 240
@@ -100,13 +101,54 @@ import QtQuick.Controls
             }
         }
 
-        Popup{
-
-            id:searchPop
-            width: searchTextField.width
+        Popup {
+            id: searchPop
+            width: parent.width
             height: 800
-        }
+            y: searchTextField.height + 10
+            z:100
 
+            background: Rectangle {
+                anchors.fill: parent
+                radius: 10
+                color: "#2d2d37"
+            }
+
+            Item {
+                id: historyItem
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.topMargin: 30
+                anchors.leftMargin: 30
+
+                // 搜索标签
+                Label {
+                    id: searchLabel
+                    color: "#7f7f85"
+                    text: "搜索历史"
+                    font.pixelSize: 18
+                    font.family: "微软雅黑 Light"
+                }
+
+                // 清除图标
+                Image {
+                    id: removeIconImg
+                    anchors.right: parent.right
+                    anchors.rightMargin: 38
+                    anchors.verticalCenter: searchLabel.verticalCenter
+                    source: "qrc:/image/trash.svg"
+
+                    // 只设置一个维度，另一个维度自动等比缩放
+                    width: 15
+                    fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+                    //抗锯齿
+                    smooth: true
+                    mipmap: true
+                }
+            }
+        }
 
         //歌唱按钮
         Rectangle {

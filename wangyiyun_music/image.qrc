@@ -10,5 +10,6 @@
         <file>image/return.svg</file>
         <file>image/search.svg</file>
         <file>image/singer.svg</file>
+        <file>image/trash.svg</file>
     </qresource>
 </RCC>
