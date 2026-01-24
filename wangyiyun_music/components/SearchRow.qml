@@ -133,7 +133,7 @@ import QtQuick.Controls
                         font.family: "微软雅黑 Light"
                     }
 
-                    // 清除图标
+                    // 垃圾图标
                     Image {
                         id: removeIconImg
                         anchors.right: parent.right
@@ -148,6 +148,14 @@ import QtQuick.Controls
                         //抗锯齿
                         smooth: true
                         mipmap: true
+
+                        MouseArea{
+                            anchors.fill: parent
+                            onClicked: {
+                                searchSingModel.clear()
+                            }
+
+                        }
                     }
 
                 }
