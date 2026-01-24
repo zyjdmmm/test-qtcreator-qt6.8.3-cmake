@@ -30,8 +30,11 @@ qt_add_qml_module(${PROJECT_NAME}
     URI ${PROJECT_NAME}
     VERSION 1.0
     RESOURCES image.qrc
+
+    # 这里是qt自动添加
     QML_FILES main.qml pages/LeftPage.qml pages/PlayMusicPage.qml pages/RightPage.qml
     QML_FILES pages/AGiaoMusicMainWindows.qml
+    QML_FILES components/SearchRow.qml
 )
 
 #-------------------------------------------#

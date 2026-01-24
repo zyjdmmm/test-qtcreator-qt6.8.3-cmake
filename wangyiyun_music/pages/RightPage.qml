@@ -2,150 +2,19 @@ import QtQuick
 import QtQuick.Window
 import Qt5Compat.GraphicalEffects
 import QtQuick.Controls
+import "../components"
 
 Rectangle {
 
     property int spacingCommon: 10
 
-    //搜索框
-    Row {
+
+    SearchRow{
         id: searchRow
         spacing: spacingCommon
         anchors.left: parent.left
         anchors.leftMargin: 20
         anchors.verticalCenter: ohterRow.verticalCenter
-
-        // 返回
-        Rectangle {
-            id: backForwardRect
-            width: 24
-            height: 35
-            radius: 4
-            color: "transparent"
-            border.width: 1
-            border.color: "#2b2b31"
-
-            Image {
-                anchors.centerIn: parent
-                source: "qrc:/image/return.svg"
-
-                // 只设置一个维度，另一个维度自动等比缩放
-                width: 15
-                fillMode: Image.PreserveAspectFit  // 核心：等比缩放
-
-                //抗锯齿
-                smooth: true
-                mipmap: true
-            }
-        }
-
-        // 搜索输入框
-        TextField {
-            id: searchTextField
-            height: backForwardRect.height
-            width: 240
-            leftPadding: 40
-            topPadding: 0
-            bottomPadding: 0
-            verticalAlignment: TextInput.AlignVCenter//背景文字居中
-            placeholderTextColor: "white"
-            placeholderText: "晴天"
-            font.pixelSize: 16
-            font.family: "微软雅黑 Light"
-
-
-            // 自定义背景
-            background: Rectangle {
-                anchors.fill: parent
-                radius: 8
-                gradient: Gradient {
-                    orientation: Gradient.Horizontal
-                    GradientStop { color: "#21283d"; position: 0 }
-                    GradientStop { color: "#382635"; position: 1 }
-                }
-
-                // 内部渐变矩形
-                Rectangle {
-                    id: innerRect
-                    anchors.fill: parent
-                    anchors.margins: 1
-                    property real gradientStopPos: 1
-                    gradient: Gradient {
-                        orientation: Gradient.Horizontal
-                        GradientStop { color: "#1a1d29"; position: 0 }
-                        GradientStop { color: "#241c26"; position: innerRect.gradientStopPos }
-                    }
-
-                    // 搜索图标
-                    Image {
-                        id: searchIcon
-                        anchors.verticalCenter: parent.verticalCenter
-                        anchors.left: parent.left
-                        anchors.leftMargin: 8
-                        source: "qrc:/image/search.svg"
-
-                        // 只设置一个维度，另一个维度自动等比缩放
-                        width: 25
-                        fillMode: Image.PreserveAspectFit  // 核心：等比缩放
-
-                        //抗锯齿
-                        smooth: true
-                        mipmap: true
-                    }
-
-                    // 点击交互区域
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            innerRect.gradientStopPos = 0
-                        }
-                    }
-                }
-            }
-        }
-
-
-        //歌唱按钮
-        Rectangle {
-            id: soundHoundRect
-            radius: 8
-            height: backForwardRect.height
-            width: height
-            color: "#241c26"
-            border.color: "#36262f"
-            border.width: 1
-            // z: 100
-
-            // 录音图标
-            Image {
-                anchors.centerIn: parent
-                source: "qrc:/image/singer.svg"
-
-                // 只设置一个维度，另一个维度自动等比缩放
-                width: 15
-                fillMode: Image.PreserveAspectFit  // 核心：等比缩放
-
-                //抗锯齿
-                smooth: true
-                mipmap: true
-
-            }
-
-            // 鼠标悬停交互
-            MouseArea {
-                anchors.fill: parent
-                hoverEnabled: true
-
-                onEntered: {
-                    soundHoundRect.color = "#241c26"
-                }
-
-                onExited: {
-                    soundHoundRect.color = "#241c26"
-                }
-            }
-        }
-
 
     }
 
