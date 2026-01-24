@@ -185,7 +185,7 @@ import QtQuick.Controls
 
                         model: searchSingModel
 
-
+                        //整个区域是个代理
                         delegate: Rectangle {
                             width: dataLabel.implicitWidth + 20
                             height: 30
