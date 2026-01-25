@@ -107,7 +107,7 @@ import QtQuick.Controls
         Popup {
             id: searchPop
             width: parent.width
-            height: 800
+            height: 1500
             y: searchTextField.height + 10
 
 
@@ -118,18 +118,18 @@ import QtQuick.Controls
 
                 Column{
                     anchors.fill: parent
-                    anchors.centerIn: parent
+                    // anchors.left: parent.left
+                    // anchors.right: parent.right
+                    // anchors.top: parent.top
+                     anchors.topMargin: 30
                     spacing: 40
 
                     //搜索历史标签+垃圾图标+搜索历史流式布局
                     Item {
                         id: historyItem
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        anchors.top: parent.top
-                        anchors.topMargin: 30
-                        anchors.leftMargin: 30
-
+                        // anchors.left: parent.left
+                        // anchors.right: parent.right
+                        // height: 100
 
                         // 搜索历史标签
                         Label {
@@ -138,6 +138,8 @@ import QtQuick.Controls
                             text: "搜索历史"
                             font.pixelSize: 18
                             font.family: "微软雅黑 Light"
+                            anchors.left: parent.left
+                            anchors.leftMargin: 30
                         }
 
                         // 垃圾图标
@@ -202,6 +204,7 @@ import QtQuick.Controls
 
                                     model: searchSingModel
 
+
                                     //整个区域是个代理
                                     delegate: Rectangle {
                                         width: dataLabel.implicitWidth + 20
@@ -239,9 +242,7 @@ import QtQuick.Controls
                                     }
                                 }
                             }
-
                         }
-
 
                     }
 
@@ -251,9 +252,7 @@ import QtQuick.Controls
                         id: hotSingListItem
                         // anchors.left: parent.left
                         // anchors.right: parent.right
-                        // 高度 = 搜索弹窗高度 - 历史标
-
-                        // anchors.top: historyItem.implicitHeight
+                        // anchors.top: historyItem.bottom
 
                         Label {
                             id: hotSearchLabel
@@ -265,6 +264,39 @@ import QtQuick.Controls
                             height: removeIconImg.implicitHeight
                             font.pixelSize: 18
                             font.family: "微软雅黑 Light"
+                        }
+                    }
+
+                    Item {
+                        width: 150
+                        height: 50
+                        // color: "#44dddd"
+                        Text {
+                            anchors.centerIn: parent
+                            text: "第yi行矩形"
+                            color: "white"
+                        }
+                    }
+
+                    Item {
+                        width: 150
+                        height: 50
+                        // color: "#44dddd"
+                        Text {
+                            anchors.centerIn: parent
+                            text: "第er行矩形"
+                            color: "white"
+                        }
+                    }
+
+                    Item {
+                        width: 150
+                        height: 50
+                        // color: "#44dddd"
+                        Text {
+                            anchors.centerIn: parent
+                            text: "第三行矩形"
+                            color: "white"
                         }
                     }
 
