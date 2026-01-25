@@ -70,3 +70,4 @@ add_subdirectory(musicbox)
 
 
 add_subdirectory(wangyiyun_music)
+add_subdirectory(wangyiyun_music_test)
