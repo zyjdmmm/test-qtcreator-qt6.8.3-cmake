@@ -1,8 +1,444 @@
 import QtQuick
+import QtQuick.Controls
+import QtQuick.Controls.Material
+import QtQuick.Layouts
 
-Window {
-    width: 640
-    height: 480
+ApplicationWindow {
+    id: window
     visible: true
-    title: qsTr("Hello World")
+    width: 900
+    height: 700
+    title: qsTr("GenerateMdTitle")
+
+    Material.theme: Material.Light
+    Material.primary: "#E91E63"
+    Material.accent: "#FF80AB"
+    Material.background: "#FCE4EC"
+
+    property color primaryColor: "#E91E63"
+    property color accentColor: "#FF80AB"
+    property color backgroundColor: "#FCE4EC"
+    property color foregroundColor: "#880E4F"
+    property color secondaryColor: "#F8BBD0"
+    property color tertiaryColor: "#F48FB1"
+    property color darkColor: "#C2185B"
+    property color textColor: "#880E4F"
+    property color borderColor: "#E91E63"
+
+    ColumnLayout {
+        anchors.fill: parent
+        spacing: 10
+        // padding: 20
+
+        Label {
+            text: "Markdown 标题生成器"
+            font.pixelSize: 28
+            font.bold: true
+            color: foregroundColor
+            Layout.alignment: Qt.AlignHCenter
+            Layout.bottomMargin: 10
+        }
+
+        TabBar {
+            id: tabBar
+            Layout.fillWidth: true
+            Material.accent: primaryColor
+
+            TabButton {
+                text: "一.99(,)类型"
+            }
+
+            TabButton {
+                text: "时间类型"
+            }
+
+            TabButton {
+                text: "整体升降标题"
+            }
+
+            TabButton {
+                text: "年份序列自动+1"
+            }
+        }
+
+        StackLayout {
+            currentIndex: tabBar.currentIndex
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            ScrollView {
+                clip: true
+
+                ColumnLayout {
+                    width: parent.width
+                    spacing: 15
+
+                    GridLayout {
+                        columns: 4
+                        columnSpacing: 10
+                        rowSpacing: 10
+                        Layout.fillWidth: true
+
+                        Label {
+                            text: "本节所有标题的级数:"
+                            color: foregroundColor
+                            Layout.columnSpan: 2
+                        }
+
+                        Label {
+                            text: "本节标题:"
+                            color: foregroundColor
+                        }
+
+                        Label {
+                            text: "本节共有多少道题:"
+                            color: foregroundColor
+                        }
+
+                        ComboBox {
+                            id: seriesComboBox
+                            Layout.preferredWidth: 140
+                            Material.accent: primaryColor
+                            model: ["#", "##", "###", "####", "#####", "######"]
+                        }
+
+                        TextField {
+                            id: titleTextEdit
+                            text: "一"
+                            Layout.preferredHeight: 35
+                            Material.accent: primaryColor
+                        }
+
+                        SpinBox {
+                            id: questionNumSpinBox
+                            from: 1
+                            to: 999999999
+                            value: 1
+                            Layout.preferredWidth: 150
+                            Material.accent: primaryColor
+                        }
+
+                        Label {
+                            text: "点"
+                            color: foregroundColor
+                        }
+
+                        Item {
+                            Layout.columnSpan: 4
+                            Layout.fillWidth: true
+                        }
+
+                        CheckBox {
+                            id: addSelectStrCheckBox
+                            text: "末尾添加\"选择\"字符"
+                            Material.accent: primaryColor
+                        }
+
+                        Item {
+                            Layout.fillWidth: true
+                        }
+
+                        Button {
+                            text: "生成文本并自动复制"
+                            Material.background: primaryColor
+                            highlighted: true
+                            Layout.preferredWidth: 200
+                            onClicked: {
+                                generateMdTitle.generateNumberSeries(
+                                    seriesComboBox.currentIndex,
+                                    titleTextEdit.text,
+                                    questionNumSpinBox.value,
+                                    addSelectStrCheckBox.checked
+                                )
+                            }
+                        }
+                    }
+
+                    ScrollView {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 200
+                        clip: true
+
+                        TextArea {
+                            id: resultTextBrowser
+                            text: generateMdTitle.resultText
+                            readOnly: true
+                            wrapMode: TextArea.Wrap
+                            color: textColor
+                            font.family: "Courier New"
+                            font.pixelSize: 12
+                            Material.background: backgroundColor
+                        }
+                    }
+                }
+            }
+
+            ScrollView {
+                clip: true
+
+                ColumnLayout {
+                    width: parent.width
+                    spacing: 15
+
+                    GridLayout {
+                        columns: 4
+                        columnSpacing: 10
+                        rowSpacing: 10
+                        Layout.fillWidth: true
+
+                        Label {
+                            text: "本节所有标题的级数:"
+                            color: foregroundColor
+                            Layout.columnSpan: 2
+                        }
+
+                        Label {
+                            text: "本节标题:"
+                            color: foregroundColor
+                        }
+
+                        Label {
+                            text: "本节共有多少道题:"
+                            color: foregroundColor
+                        }
+
+                        ComboBox {
+                            id: seriesComboBox2
+                            Layout.preferredWidth: 140
+                            Material.accent: primaryColor
+                            model: ["#", "##", "###", "####", "#####", "######"]
+                        }
+
+                        TextField {
+                            id: titleTextEdit2
+                            text: "0h59min"
+                            Layout.preferredHeight: 35
+                            Material.accent: primaryColor
+                        }
+
+                        SpinBox {
+                            id: questionNumSpinBox2
+                            from: 1
+                            to: 999999999
+                            value: 1
+                            Layout.preferredWidth: 150
+                            Material.accent: primaryColor
+                        }
+
+                        Label {
+                            text: "点"
+                            color: foregroundColor
+                        }
+
+                        Item {
+                            Layout.columnSpan: 4
+                            Layout.fillWidth: true
+                        }
+
+                        CheckBox {
+                            id: addSelectStrCheckBox2
+                            text: "末尾添加\"选择\"字符"
+                            Material.accent: primaryColor
+                        }
+
+                        Item {
+                            Layout.fillWidth: true
+                        }
+
+                        Button {
+                            text: "生成文本并自动复制"
+                            Material.background: primaryColor
+                            highlighted: true
+                            Layout.preferredWidth: 200
+                            onClicked: {
+                                generateMdTitle.generateTimeSeries(
+                                    seriesComboBox2.currentIndex,
+                                    titleTextEdit2.text,
+                                    questionNumSpinBox2.value,
+                                    addSelectStrCheckBox2.checked
+                                )
+                            }
+                        }
+                    }
+
+                    ScrollView {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 200
+                        clip: true
+
+                        TextArea {
+                            id: resultTextBrowser2
+                            text: generateMdTitle.resultText
+                            readOnly: true
+                            wrapMode: TextArea.Wrap
+                            color: textColor
+                            font.family: "Courier New"
+                            font.pixelSize: 12
+                            Material.background: backgroundColor
+                        }
+                    }
+                }
+            }
+
+            ScrollView {
+                clip: true
+
+                ColumnLayout {
+                    width: parent.width
+                    spacing: 15
+
+                    RowLayout {
+                        spacing: 10
+                        Layout.fillWidth: true
+
+                        Button {
+                            text: "手中标题降低1级并自动复制(Ctrl+Shift+↓)"
+                            Material.background: primaryColor
+                            highlighted: true
+                            Layout.fillWidth: true
+                            onClicked: {
+                                generateMdTitle.downTitleLevel()
+                            }
+                        }
+
+                        Button {
+                            text: "手中标题提升1级并自动复制(Ctrl+Shift+↑)"
+                            Material.background: primaryColor
+                            highlighted: true
+                            Layout.fillWidth: true
+                            onClicked: {
+                                generateMdTitle.upTitleLevel()
+                            }
+                        }
+                    }
+
+                    ScrollView {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 200
+                        clip: true
+
+                        TextArea {
+                            id: resultTextBrowser3
+                            text: generateMdTitle.resultText
+                            readOnly: true
+                            wrapMode: TextArea.Wrap
+                            color: textColor
+                            font.family: "Courier New"
+                            font.pixelSize: 12
+                            Material.background: backgroundColor
+                        }
+                    }
+                }
+            }
+
+            ScrollView {
+                clip: true
+
+                ColumnLayout {
+                    width: parent.width
+                    spacing: 15
+
+                    GridLayout {
+                        columns: 4
+                        columnSpacing: 10
+                        rowSpacing: 10
+                        Layout.fillWidth: true
+
+                        Label {
+                            text: "本节所有标题的级数:"
+                            color: foregroundColor
+                            Layout.columnSpan: 2
+                        }
+
+                        Label {
+                            text: "本节标题:"
+                            color: foregroundColor
+                        }
+
+                        Label {
+                            text: "本节共有多少道题:"
+                            color: foregroundColor
+                        }
+
+                        ComboBox {
+                            id: seriesComboBox4
+                            Layout.preferredWidth: 140
+                            Material.accent: primaryColor
+                            model: ["#", "##", "###", "####", "#####", "######"]
+                        }
+
+                        SpinBox {
+                            id: yearsSpinBox
+                            from: 1
+                            to: 999999999
+                            value: 2001
+                            Layout.preferredWidth: 150
+                            Material.accent: primaryColor
+                        }
+
+                        SpinBox {
+                            id: questionNumSpinBox4
+                            from: 1
+                            to: 999999999
+                            value: 1
+                            Layout.preferredWidth: 150
+                            Material.accent: primaryColor
+                        }
+
+                        Label {
+                            text: "点"
+                            color: foregroundColor
+                        }
+
+                        Item {
+                            Layout.columnSpan: 4
+                            Layout.fillWidth: true
+                        }
+
+                        CheckBox {
+                            id: addSelectStrCheckBox4
+                            text: "末尾添加\"选择\"字符"
+                            Material.accent: primaryColor
+                        }
+
+                        Item {
+                            Layout.fillWidth: true
+                        }
+
+                        Button {
+                            text: "生成文本并自动复制"
+                            Material.background: primaryColor
+                            highlighted: true
+                            Layout.preferredWidth: 200
+                            onClicked: {
+                                generateMdTitle.generateYearSeries(
+                                    seriesComboBox4.currentIndex,
+                                    yearsSpinBox.value,
+                                    questionNumSpinBox4.value,
+                                    addSelectStrCheckBox4.checked
+                                )
+                            }
+                        }
+                    }
+
+                    ScrollView {
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 200
+                        clip: true
+
+                        TextArea {
+                            id: resultTextBrowser4
+                            text: generateMdTitle.resultText
+                            readOnly: true
+                            wrapMode: TextArea.Wrap
+                            color: textColor
+                            font.family: "Courier New"
+                            font.pixelSize: 12
+                            Material.background: backgroundColor
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

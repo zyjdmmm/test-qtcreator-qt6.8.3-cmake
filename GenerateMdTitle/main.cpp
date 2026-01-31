@@ -1,7 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-// #include "generatemdtitle.h"
+ #include "generatemdtitle.h"
 
 int main(int argc, char *argv[])
 {
