@@ -108,7 +108,7 @@ Row {
     Popup {
         id: searchPop
         width: parent.width
-        height: 200
+        height: 400
         y: searchTextField.height + 10
 
         background: Rectangle {
@@ -116,7 +116,7 @@ Row {
             radius: 10
             color: "#2d2d37"
 
-            //注意每个空间都要指定height: 50高度，不然就会乱掉，空间会尝试填满整个空间
+            //注意每个控件都要指定height: 50高度，不然就会乱掉，控件会尝试填满整个空间
             Column{
                 anchors.fill: parent
                 anchors.left: parent.left
@@ -171,86 +171,106 @@ Row {
                 }
 
 
-                    // 搜索歌曲数据模型
-                    ListModel {
-                        id: searchSingModel
-                        ListElement { singName: "想象之中" }
-                        ListElement { singName: "搁浅" }
-                        ListElement { singName: "哪里都是你" }
-                        ListElement { singName: "入戏太深" }
-                        ListElement { singName: "That girl" }
-                        ListElement { singName: "素颜" }
-                        ListElement { singName: "她说" }
-                        ListElement { singName: "ABC" }
-                        ListElement { singName: "daylight" }
-                        ListElement { singName: "其他" }
-                    }
+                // 搜索歌曲数据模型
+                ListModel {
+                    id: searchSingModel
+                    ListElement { singName: "想象之中" }
+                    ListElement { singName: "搁浅" }
+                    ListElement { singName: "哪里都是你" }
+                    ListElement { singName: "入戏太深" }
+                    ListElement { singName: "That girl" }
+                    ListElement { singName: "素颜" }
+                    ListElement { singName: "她说" }
+                    ListElement { singName: "ABC" }
+                    ListElement { singName: "daylight" }
+                    ListElement { singName: "其他" }
+                }
 
-                    //搜索历史流式布局
-                    //注意:流式布局就是一个控件，必须要套住才不会被冲散--AI也推荐套一个Item
-                    Item {
-                        anchors.top: searchLabel.bottom
-                        anchors.topMargin: 10
-                        anchors.leftMargin: 10
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-                        height: 80
-                        Flow {
-                            id: singFlow
+                //搜索历史流式布局
+                //注意:流式布局就是一个控件，必须要套住才不会被冲散--AI也推荐套一个Item
+                Item {
+                    anchors.top: searchLabel.bottom
+                    anchors.topMargin: 10
+                    anchors.leftMargin: 10
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    height: 100
+                    Flow {
+                        id: singFlow
+                        anchors.fill: parent
+                        spacing: 10//为什么控制每个label的间距要加到这???
+
+
+                        // 基于数据模型的重复器（生成多个标签）
+                        Repeater {
+                            id: historyRep
                             anchors.fill: parent
-                            spacing: 10//为什么控制每个label的间距要加到这???
-
-
-                            // 基于数据模型的重复器（生成多个标签）
-                            Repeater {
-                                id: historyRep
-                                anchors.fill: parent
 
 
 
-                                model: searchSingModel
+                            model: searchSingModel
 
 
-                                //整个区域是个代理
-                                delegate: Rectangle {
-                                    width: dataLabel.implicitWidth + 20
-                                    height: 30
-                                    border.width: 1
-                                    border.color: "#45454e"
-                                    color: "#2d2d37"
-                                    radius: 15
+                            //整个区域是个代理
+                            delegate: Rectangle {
+                                width: dataLabel.implicitWidth + 20
+                                height: 30
+                                border.width: 1
+                                border.color: "#45454e"
+                                color: "#2d2d37"
+                                radius: 15
 
-                                    Label {
-                                        id: dataLabel
-                                        text: modelData//只用一个属性用modelData
-                                        font.pixelSize: 15
-                                        anchors.centerIn: parent
-                                        color: "#ddd"
-                                        font.family: "微软雅黑 Light"
-                                         // height: 50//无效
+                                Label {
+                                    id: dataLabel
+                                    text: modelData//只用一个属性用modelData
+                                    font.pixelSize: 15
+                                    anchors.centerIn: parent
+                                    color: "#ddd"
+                                    font.family: "微软雅黑 Light"
+                                    // height: 50//无效
+                                }
+
+                                MouseArea{
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+                                    onEntered: {
+                                        dataLabel.color="white"
+                                        parent.color="#393943"
+                                        cursorShape=Qt.PointingHandCursor
                                     }
+                                    onExited:  {
+                                        dataLabel.color="#ddd"
+                                        parent.color="#2d2d37"
+                                        cursorShape=Qt.ArrowCursor
 
-                                    MouseArea{
-                                        anchors.fill: parent
-                                        hoverEnabled: true
-                                        onEntered: {
-                                            dataLabel.color="white"
-                                            parent.color="#393943"
-                                            cursorShape=Qt.PointingHandCursor
-                                        }
-                                        onExited:  {
-                                            dataLabel.color="#ddd"
-                                            parent.color="#2d2d37"
-                                            cursorShape=Qt.ArrowCursor
-
-                                        }
                                     }
                                 }
                             }
                         }
                     }
+                }
+
+                //热搜榜
+                Item{
+                    id:hotSongItem
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    height: 100
+
+                    Label{
+                        id:hotSongLable
+                        color:"#7f7f85"
+                        text: "热搜榜"
+                        anchors.left: parent.left
+                        height: 30
+                        font.pixelSize: 18
+                        font.family: "微软雅黑 Light"
+                    }
 
                 }
+
+
+            }
 
         }
     }
