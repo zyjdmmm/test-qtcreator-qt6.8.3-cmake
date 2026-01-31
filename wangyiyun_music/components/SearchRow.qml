@@ -104,7 +104,6 @@ Row {
 
 
     // Popup组件很独特是浮动窗口，不参与row布局，需要绝对定位
-
     Popup {
         id: searchPop
         width: parent.width
@@ -116,7 +115,7 @@ Row {
             radius: 10
             color: "#2d2d37"
 
-            //注意每个控件都要指定height: 50高度，不然就会乱掉，控件会尝试填满整个空间
+            //注意：每个控件都要指定height: 50高度，不然就会乱掉，控件会尝试填满整个空间
             Column{
                 anchors.fill: parent
                 anchors.left: parent.left
@@ -132,7 +131,7 @@ Row {
                     anchors.right: parent.right
                     anchors.topMargin: 30
                     anchors.leftMargin: 30
-                    height: 50
+                    height: 30
 
                     // 搜索历史标签
                     Label {
@@ -141,6 +140,9 @@ Row {
                         text: "搜索历史"
                         font.pixelSize: 18
                         font.family: "微软雅黑 Light"
+
+                        horizontalAlignment: Text.AlignHCenter  // 水平居中
+                        verticalAlignment: Text.AlignBottom     // 垂直靠下（贴下边缘）
                     }
 
                     // 垃圾图标
@@ -186,6 +188,33 @@ Row {
                     ListElement { singName: "其他" }
                 }
 
+                //热搜各取榜单
+                ListModel {
+                    id: hotSongModel
+
+                    ListElement { singName: "想象之中" }
+                    ListElement { singName: "雨道" }
+                    ListElement { singName: "哪里都是你" }
+                    ListElement { singName: "入戏太深" }
+                    ListElement { singName: "That girl" }
+                    ListElement { singName: "素颜" }
+                    ListElement { singName: "她说" }
+                    ListElement { singName: "ABC" }
+                    ListElement { singName: "daylight" }
+                    ListElement { singName: "其他" }
+                    ListElement { singName: "想象之中" }
+                    ListElement { singName: "雨道" }
+                    ListElement { singName: "哪里都是你" }
+                    ListElement { singName: "入戏太深" }
+                    ListElement { singName: "That girl" }
+                    ListElement { singName: "素颜" }
+                    ListElement { singName: "她说" }
+                    ListElement { singName: "ABC" }
+                    ListElement { singName: "daylight" }
+                    ListElement { singName: "其他" }
+                }
+
+
                 //搜索历史流式布局
                 //注意:流式布局就是一个控件，必须要套住才不会被冲散--AI也推荐套一个Item
                 Item {
@@ -194,7 +223,7 @@ Row {
                     anchors.leftMargin: 10
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    height: 100
+                    height: 110
                     Flow {
                         id: singFlow
                         anchors.fill: parent
@@ -255,16 +284,94 @@ Row {
                     id:hotSongItem
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    height: 100
+
+                    height: 30
 
                     Label{
                         id:hotSongLable
                         color:"#7f7f85"
                         text: "热搜榜"
                         anchors.left: parent.left
+                        anchors.leftMargin: 30
                         height: 30
                         font.pixelSize: 18
                         font.family: "微软雅黑 Light"
+
+
+                        horizontalAlignment: Text.AlignHCenter  // 水平居中
+                        verticalAlignment: Text.AlignBottom     // 垂直靠下（贴下边缘）
+                    }
+
+                    //把重复器用列布局包裹住
+                    Column{
+                        anchors.left: parent.left
+                        anchors.right: parent.bottom
+                        anchors.bottom: parent.bottom
+
+                        anchors.top: hotSongLable.bottom
+                        anchors.topMargin: 10
+
+
+                        Repeater{
+                        model: hotSongModel
+                        delegate: Rectangle{//代理控制每一行数据的显示
+                            width: singFlow.implicitWidth
+                            height: 30//这个高度太大也会导致间隔看齐变大
+                            color:"transparent"
+
+                            Label{
+                                id:hotSongIndexLable
+                                color:index<3?"#eb4d44":"#818187"//每个代理都有自己的索引
+                                text:String(index+1)
+                                anchors.left: parent.left
+                                anchors.leftMargin: 20
+                                anchors.verticalCenter: parent.verticalCenter
+                                font.pixelSize: 18
+                                font.family: "微软雅黑 Light"
+
+
+                            }
+
+                            Label{
+                                id:hotSongNameLable
+                                color:"#ddd"
+                                text: singName//只用一个属性用modelData
+                                anchors.left: hotSongIndexLable.right
+                                anchors.verticalCenter: parent.verticalCenter
+                                anchors.leftMargin: 20
+                                font.pixelSize: 18
+                                font.family: "微软雅黑 Light"
+
+
+                            }
+
+                            // 鼠标事件也要放入代理中
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+
+                                onEntered: {
+                                    parent.color = "#393943"
+                                    cursorShape = Qt.PointingHandCursor
+                                }
+
+                                onExited: {
+                                    parent.color = "transparent"
+                                    cursorShape = Qt.ArrowCursor
+                                }
+
+                                onClicked: {
+                                    searchTextField.text = singName
+                                    searchPop.close()
+                                }
+                            }
+
+                        }
+                    }
+
+
+
+
                     }
 
                 }
