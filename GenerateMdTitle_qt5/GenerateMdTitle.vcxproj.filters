@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;cxx;c;def</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{3088cc8d-b908-49d1-8d58-e22cdb64513e}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{ed609e95-e7b2-41f2-bc1e-3fa7ceb4c038}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Source Files\common">
+      <UniqueIdentifier>{de42f5a3-e86d-4662-a866-939352d63968}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common">
+      <UniqueIdentifier>{f02ef413-e81f-4d21-96d3-2ec840d7029d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common\tool">
+      <UniqueIdentifier>{61f8870d-954b-4716-bb43-1d74db53dcc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common\tool">
+      <UniqueIdentifier>{7eb4c781-6d9d-4f50-b4e9-16597c2907b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\common\tool\QxtGlobalShortcut">
+      <UniqueIdentifier>{074e58bd-4f4f-4fc8-9d5e-1332c1cbc729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\common\tool\QxtGlobalShortcut">
+      <UniqueIdentifier>{08d2cecc-5e43-4dbe-be23-71b1382ffbb9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GenerateMdTitle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_GenerateMdTitle.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_GenerateMdTitle.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_GenerateMdTitle.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\common\tool\ApplicationTools.cpp">
+      <Filter>Source Files\common\tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\common\tool\Tools.cpp">
+      <Filter>Source Files\common\tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\common\tool\StringTools.cpp">
+      <Filter>Source Files\common\tool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\common\tool\QxtGlobalShortcut\qxtglobalshortcut.cpp">
+      <Filter>Source Files\common\tool\QxtGlobalShortcut</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\common\tool\QxtGlobalShortcut\qxtglobalshortcut_mac.cpp">
+      <Filter>Source Files\common\tool\QxtGlobalShortcut</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\common\tool\QxtGlobalShortcut\qxtglobalshortcut_win.cpp">
+      <Filter>Source Files\common\tool\QxtGlobalShortcut</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\common\tool\QxtGlobalShortcut\qxtglobalshortcut_x11.cpp">
+      <Filter>Source Files\common\tool\QxtGlobalShortcut</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_qxtglobalshortcut.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_qxtglobalshortcut.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="GenerateMdTitle.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GenerateMdTitle.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GenerateMdTitle.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="..\..\..\common\tool\QxtGlobalShortcut\qxtglobalshortcut.h">
+      <Filter>Header Files\common\tool\QxtGlobalShortcut</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_GenerateMdTitle.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\tool\ApplicationTools.h">
+      <Filter>Header Files\common\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\tool\Tools.h">
+      <Filter>Header Files\common\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\tool\StringTools.h">
+      <Filter>Header Files\common\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\tool\QxtGlobalShortcut\qxtglobalshortcut_p.h">
+      <Filter>Header Files\common\tool\QxtGlobalShortcut</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\common\tool\QxtGlobalShortcut\xcbkeyboard.h">
+      <Filter>Header Files\common\tool\QxtGlobalShortcut</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GenerateMdTitle.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+  </ItemGroup>
+</Project>
