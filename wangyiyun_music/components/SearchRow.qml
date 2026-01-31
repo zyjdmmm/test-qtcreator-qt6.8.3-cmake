@@ -4,160 +4,221 @@ import Qt5Compat.GraphicalEffects
 import QtQuick.Controls
 
 //搜索框
-    Row {
-        // 返回
-        Rectangle {
-            id: backForwardRect
-            width: 24
-            height: 35
-            radius: 4
-            color: "transparent"
-            border.width: 1
-            border.color: "#2b2b31"
+Row {
+    // 返回
+    Rectangle {
+        id: backForwardRect
+        width: 24
+        height: 35
+        radius: 4
+        color: "transparent"
+        border.width: 1
+        border.color: "#2b2b31"
 
-            Image {
-                anchors.centerIn: parent
-                source: "qrc:/image/return.svg"
+        Image {
+            anchors.centerIn: parent
+            source: "qrc:/image/return.svg"
 
-                // 只设置一个维度，另一个维度自动等比缩放
-                width: 15
-                fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+            // 只设置一个维度，另一个维度自动等比缩放
+            width: 15
+            fillMode: Image.PreserveAspectFit  // 核心：等比缩放
 
-                //抗锯齿
-                smooth: true
-                mipmap: true
-            }
+            //抗锯齿
+            smooth: true
+            mipmap: true
         }
+    }
 
 
-        // 搜索输入框容器
-        //套一个Item的原因:Item 将事件分发给所有子组件,这样就能鼠标穿透到MouseArea了
-        Item {
-            height: backForwardRect.height
-            width: 240
-            
-            // 搜索输入框
-            TextField {
-                id: searchTextField
+    // 搜索输入框容器
+    //套一个Item的原因:Item 将事件分发给所有子组件,这样就能鼠标穿透到MouseArea了
+    Item {
+        height: backForwardRect.height
+        width: 240
+
+        // 搜索输入框
+        TextField {
+            id: searchTextField
+            anchors.fill: parent
+            leftPadding: 40
+            topPadding: 0
+            bottomPadding: 0
+            verticalAlignment: TextInput.AlignVCenter//背景文字居中
+            placeholderTextColor: "white"
+            placeholderText: "晴天"
+            font.pixelSize: 16
+            font.family: "微软雅黑 Light"
+
+            // 自定义背景
+            background: Rectangle {
                 anchors.fill: parent
-                leftPadding: 40
-                topPadding: 0
-                bottomPadding: 0
-                verticalAlignment: TextInput.AlignVCenter//背景文字居中
-                placeholderTextColor: "white"
-                placeholderText: "晴天"
-                font.pixelSize: 16
-                font.family: "微软雅黑 Light"
+                radius: 8
+                gradient: Gradient {
+                    orientation: Gradient.Horizontal
+                    GradientStop { color: "#21283d"; position: 0 }
+                    GradientStop { color: "#382635"; position: 1 }
+                }
 
-                // 自定义背景
-                background: Rectangle {
+                // 内部渐变矩形
+                Rectangle {
+                    id: innerRect
                     anchors.fill: parent
-                    radius: 8
+                    anchors.margins: 1
+                    property real gradientStopPos: 1
                     gradient: Gradient {
                         orientation: Gradient.Horizontal
-                        GradientStop { color: "#21283d"; position: 0 }
-                        GradientStop { color: "#382635"; position: 1 }
+                        GradientStop { color: "#1a1d29"; position: 0 }
+                        GradientStop { color: "#241c26"; position: innerRect.gradientStopPos }
                     }
 
-                    // 内部渐变矩形
-                    Rectangle {
-                        id: innerRect
-                        anchors.fill: parent
-                        anchors.margins: 1
-                        property real gradientStopPos: 1
-                        gradient: Gradient {
-                            orientation: Gradient.Horizontal
-                            GradientStop { color: "#1a1d29"; position: 0 }
-                            GradientStop { color: "#241c26"; position: innerRect.gradientStopPos }
-                        }
+                    // 搜索图标
+                    Image {
+                        id: searchIcon
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.left
+                        anchors.leftMargin: 8
+                        source: "qrc:/image/search.svg"
 
-                        // 搜索图标
-                        Image {
-                            id: searchIcon
-                            anchors.verticalCenter: parent.verticalCenter
-                            anchors.left: parent.left
-                            anchors.leftMargin: 8
-                            source: "qrc:/image/search.svg"
+                        // 只设置一个维度，另一个维度自动等比缩放
+                        width: 25
+                        fillMode: Image.PreserveAspectFit  // 核心：等比缩放
 
-                            // 只设置一个维度，另一个维度自动等比缩放
-                            width: 25
-                            fillMode: Image.PreserveAspectFit  // 核心：等比缩放
-
-                            //抗锯齿
-                            smooth: true
-                            mipmap: true
-                        }
+                        //抗锯齿
+                        smooth: true
+                        mipmap: true
                     }
                 }
             }
-            
-            // 点击交互区域（放在TextField外部）
-            MouseArea {
-                anchors.fill: parent
-                onClicked: {
-                    innerRect.gradientStopPos = 0
-                    searchPop.open()
-                }
-            }
         }
 
-
-
-        // Popup组件很独特是浮动窗口，不参与row布局，需要绝对定位
-        Popup {
-            id: searchPop
-            width: parent.width
-            height: 1500
-            y: searchTextField.height + 10
-
-
-
-
-        }
-
-
-
-
-        //歌唱按钮
-        Rectangle {
-            id: soundHoundRect
-            radius: 8
-            height: backForwardRect.height
-            width: height
-            color: "#241c26"
-            border.color: "#36262f"
-            border.width: 1
-            // z: 100
-
-            // 录音图标
-            Image {
-                anchors.centerIn: parent
-                source: "qrc:/image/singer.svg"
-
-                // 只设置一个维度，另一个维度自动等比缩放
-                width: 15
-                fillMode: Image.PreserveAspectFit  // 核心：等比缩放
-
-                //抗锯齿
-                smooth: true
-                mipmap: true
-
-            }
-
-            // 鼠标悬停交互
-            MouseArea {
-                anchors.fill: parent
-                hoverEnabled: true
-
-                onEntered: {
-                    soundHoundRect.color = "#241c26"
-                }
-
-                onExited: {
-                    soundHoundRect.color = "#241c26"
-                }
+        // 点击交互区域（放在TextField外部）
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                innerRect.gradientStopPos = 0
+                searchPop.open()
             }
         }
-
-
     }
+
+
+
+    // Popup组件很独特是浮动窗口，不参与row布局，需要绝对定位
+
+    Popup {
+        id: searchPop
+        width: parent.width
+        height: 200
+        y: searchTextField.height + 10
+
+        background: Rectangle {
+            anchors.fill: parent
+            radius: 10
+            color: "#2d2d37"
+
+            //注意每个空间都要指定height: 50高度，不然就会乱掉，空间会尝试填满整个空间
+            Column{
+                anchors.fill: parent
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.topMargin: 10
+                spacing: 10
+
+                //搜索历史标签+垃圾图标+搜索历史流式布局
+                Item {
+                    id: historyItem
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    anchors.topMargin: 30
+                    anchors.leftMargin: 30
+                    height: 50
+
+                    // 搜索历史标签
+                    Label {
+                        id: searchLabel
+                        color: "#7f7f85"
+                        text: "搜索历史"
+                        font.pixelSize: 18
+                        font.family: "微软雅黑 Light"
+                    }
+
+                    // 垃圾图标
+                    Image {
+                        id: removeIconImg
+                        anchors.right: parent.right
+                        anchors.rightMargin: 38
+                        anchors.verticalCenter: searchLabel.verticalCenter
+                        source: "qrc:/image/trash.svg"
+
+                        // 只设置一个维度，另一个维度自动等比缩放
+                        width: 15
+                        fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+                        //抗锯齿
+                        smooth: true
+                        mipmap: true
+
+                        MouseArea{
+                            anchors.fill: parent
+                            onClicked: {
+                                searchSingModel.clear()
+                            }
+
+                        }
+                    }
+
+                }
+
+
+
+
+
+
+            }
+
+
+        }
+    }
+
+    //歌唱按钮
+    Rectangle {
+        id: soundHoundRect
+        radius: 8
+        height: backForwardRect.height
+        width: height
+        color: "#241c26"
+        border.color: "#36262f"
+        border.width: 1
+        // z: 100
+
+        // 录音图标
+        Image {
+            anchors.centerIn: parent
+            source: "qrc:/image/singer.svg"
+
+            // 只设置一个维度，另一个维度自动等比缩放
+            width: 15
+            fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+            //抗锯齿
+            smooth: true
+            mipmap: true
+
+        }
+
+        // 鼠标悬停交互
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+
+            onEntered: {
+                soundHoundRect.color = "#241c26"
+            }
+
+            onExited: {
+                soundHoundRect.color = "#241c26"
+            }
+        }
+    }
+}
