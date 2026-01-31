@@ -122,6 +122,17 @@ Row {
             Flickable{
                 anchors.fill: parent
                 contentHeight: 800
+                ScrollBar.vertical: ScrollBar {
+                    anchors.right: parent.right
+                    anchors.rightMargin: 5
+                    width: 10
+                    contentItem: Rectangle {
+                        visible: parent.active
+                        implicitWidth: 10
+                        radius: 4
+                        color: "#42424b"
+                    }
+                }
 
 
                 //注意：每个控件都要指定height: 50高度，不然就会乱掉，控件会尝试填满整个空间
