@@ -107,13 +107,15 @@ Row {
     Popup {
         id: searchPop
         width: parent.width
-        height: 400
+        height: 350
         y: searchTextField.height + 10
+
 
         background: Rectangle {
             anchors.fill: parent
             radius: 10
             color: "#2d2d37"
+            clip:true
 
             //注意：每个控件都要指定height: 50高度，不然就会乱掉，控件会尝试填满整个空间
             Column{
