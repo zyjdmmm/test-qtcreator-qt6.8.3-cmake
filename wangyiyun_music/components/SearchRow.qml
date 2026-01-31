@@ -115,271 +115,282 @@ Row {
             anchors.fill: parent
             radius: 10
             color: "#2d2d37"
-            clip:true
+            clip:true//多余的部分进行截断
 
-            //注意：每个控件都要指定height: 50高度，不然就会乱掉，控件会尝试填满整个空间
-            Column{
+
+            //用Flickable把整个Column放进去，可以滑动
+            Flickable{
                 anchors.fill: parent
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.top: parent.top
-                anchors.topMargin: 10
-                spacing: 10
+                contentHeight: 800
 
-                //搜索历史标签+垃圾图标+搜索历史流式布局
-                Item {
-                    id: historyItem
+
+                //注意：每个控件都要指定height: 50高度，不然就会乱掉，控件会尝试填满整个空间
+                Column{
+                    anchors.fill: parent
                     anchors.left: parent.left
                     anchors.right: parent.right
-                    anchors.topMargin: 30
-                    anchors.leftMargin: 30
-                    height: 30
-
-                    // 搜索历史标签
-                    Label {
-                        id: searchLabel
-                        color: "#7f7f85"
-                        text: "搜索历史"
-                        font.pixelSize: 18
-                        font.family: "微软雅黑 Light"
-
-                        horizontalAlignment: Text.AlignHCenter  // 水平居中
-                        verticalAlignment: Text.AlignBottom     // 垂直靠下（贴下边缘）
-                    }
-
-                    // 垃圾图标
-                    Image {
-                        id: removeIconImg
-                        anchors.right: parent.right
-                        anchors.rightMargin: 38
-                        anchors.verticalCenter: searchLabel.verticalCenter
-                        source: "qrc:/image/trash.svg"
-
-                        // 只设置一个维度，另一个维度自动等比缩放
-                        width: 15
-                        fillMode: Image.PreserveAspectFit  // 核心：等比缩放
-
-                        //抗锯齿
-                        smooth: true
-                        mipmap: true
-
-                        MouseArea{
-                            anchors.fill: parent
-                            onClicked: {
-                                searchSingModel.clear()
-                            }
-
-                        }
-                    }
-
-                }
-
-
-                // 搜索歌曲数据模型
-                ListModel {
-                    id: searchSingModel
-                    ListElement { singName: "想象之中" }
-                    ListElement { singName: "搁浅" }
-                    ListElement { singName: "哪里都是你" }
-                    ListElement { singName: "入戏太深" }
-                    ListElement { singName: "That girl" }
-                    ListElement { singName: "素颜" }
-                    ListElement { singName: "她说" }
-                    ListElement { singName: "ABC" }
-                    ListElement { singName: "daylight" }
-                    ListElement { singName: "其他" }
-                }
-
-                //热搜各取榜单
-                ListModel {
-                    id: hotSongModel
-
-                    ListElement { singName: "想象之中" }
-                    ListElement { singName: "雨道" }
-                    ListElement { singName: "哪里都是你" }
-                    ListElement { singName: "入戏太深" }
-                    ListElement { singName: "That girl" }
-                    ListElement { singName: "素颜" }
-                    ListElement { singName: "她说" }
-                    ListElement { singName: "ABC" }
-                    ListElement { singName: "daylight" }
-                    ListElement { singName: "其他" }
-                    ListElement { singName: "想象之中" }
-                    ListElement { singName: "雨道" }
-                    ListElement { singName: "哪里都是你" }
-                    ListElement { singName: "入戏太深" }
-                    ListElement { singName: "That girl" }
-                    ListElement { singName: "素颜" }
-                    ListElement { singName: "她说" }
-                    ListElement { singName: "ABC" }
-                    ListElement { singName: "daylight" }
-                    ListElement { singName: "其他" }
-                }
-
-
-                //搜索历史流式布局
-                //注意:流式布局就是一个控件，必须要套住才不会被冲散--AI也推荐套一个Item
-                Item {
-                    anchors.top: searchLabel.bottom
+                    anchors.top: parent.top
                     anchors.topMargin: 10
-                    anchors.leftMargin: 10
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    height: 110
-                    Flow {
-                        id: singFlow
-                        anchors.fill: parent
-                        spacing: 10//为什么控制每个label的间距要加到这???
+                    spacing: 10
 
-
-                        // 基于数据模型的重复器（生成多个标签）
-                        Repeater {
-                            id: historyRep
-                            anchors.fill: parent
-
-
-
-                            model: searchSingModel
-
-
-                            //整个区域是个代理
-                            delegate: Rectangle {
-                                width: dataLabel.implicitWidth + 20
-                                height: 30
-                                border.width: 1
-                                border.color: "#45454e"
-                                color: "#2d2d37"
-                                radius: 15
-
-                                Label {
-                                    id: dataLabel
-                                    text: modelData//只用一个属性用modelData
-                                    font.pixelSize: 15
-                                    anchors.centerIn: parent
-                                    color: "#ddd"
-                                    font.family: "微软雅黑 Light"
-                                    // height: 50//无效
-                                }
-
-                                MouseArea{
-                                    anchors.fill: parent
-                                    hoverEnabled: true
-                                    onEntered: {
-                                        dataLabel.color="white"
-                                        parent.color="#393943"
-                                        cursorShape=Qt.PointingHandCursor
-                                    }
-                                    onExited:  {
-                                        dataLabel.color="#ddd"
-                                        parent.color="#2d2d37"
-                                        cursorShape=Qt.ArrowCursor
-
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-
-                //热搜榜
-                Item{
-                    id:hotSongItem
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-
-                    height: 30
-
-                    Label{
-                        id:hotSongLable
-                        color:"#7f7f85"
-                        text: "热搜榜"
+                    //搜索历史标签+垃圾图标+搜索历史流式布局
+                    Item {
+                        id: historyItem
                         anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.topMargin: 30
                         anchors.leftMargin: 30
                         height: 30
-                        font.pixelSize: 18
-                        font.family: "微软雅黑 Light"
 
+                        // 搜索历史标签
+                        Label {
+                            id: searchLabel
+                            color: "#7f7f85"
+                            text: "搜索历史"
+                            font.pixelSize: 18
+                            font.family: "微软雅黑 Light"
 
-                        horizontalAlignment: Text.AlignHCenter  // 水平居中
-                        verticalAlignment: Text.AlignBottom     // 垂直靠下（贴下边缘）
+                            horizontalAlignment: Text.AlignHCenter  // 水平居中
+                            verticalAlignment: Text.AlignBottom     // 垂直靠下（贴下边缘）
+                        }
+
+                        // 垃圾图标
+                        Image {
+                            id: removeIconImg
+                            anchors.right: parent.right
+                            anchors.rightMargin: 38
+                            anchors.verticalCenter: searchLabel.verticalCenter
+                            source: "qrc:/image/trash.svg"
+
+                            // 只设置一个维度，另一个维度自动等比缩放
+                            width: 15
+                            fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+                            //抗锯齿
+                            smooth: true
+                            mipmap: true
+
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: {
+                                    searchSingModel.clear()
+                                }
+
+                            }
+                        }
+
                     }
 
-                    //把重复器用列布局包裹住
-                    Column{
-                        anchors.left: parent.left
-                        anchors.right: parent.bottom
-                        anchors.bottom: parent.bottom
 
-                        anchors.top: hotSongLable.bottom
+                    // 搜索歌曲数据模型
+                    ListModel {
+                        id: searchSingModel
+                        ListElement { singName: "想象之中" }
+                        ListElement { singName: "搁浅" }
+                        ListElement { singName: "哪里都是你" }
+                        ListElement { singName: "入戏太深" }
+                        ListElement { singName: "That girl" }
+                        ListElement { singName: "素颜" }
+                        ListElement { singName: "她说" }
+                        ListElement { singName: "ABC" }
+                        ListElement { singName: "daylight" }
+                        ListElement { singName: "其他" }
+                    }
+
+                    //热搜各取榜单
+                    ListModel {
+                        id: hotSongModel
+
+                        ListElement { singName: "想象之中" }
+                        ListElement { singName: "雨道" }
+                        ListElement { singName: "哪里都是你" }
+                        ListElement { singName: "入戏太深" }
+                        ListElement { singName: "That girl" }
+                        ListElement { singName: "素颜" }
+                        ListElement { singName: "她说" }
+                        ListElement { singName: "ABC" }
+                        ListElement { singName: "daylight" }
+                        ListElement { singName: "其他" }
+                        ListElement { singName: "想象之中" }
+                        ListElement { singName: "雨道" }
+                        ListElement { singName: "哪里都是你" }
+                        ListElement { singName: "入戏太深" }
+                        ListElement { singName: "That girl" }
+                        ListElement { singName: "素颜" }
+                        ListElement { singName: "她说" }
+                        ListElement { singName: "ABC" }
+                        ListElement { singName: "daylight" }
+                        ListElement { singName: "其他" }
+                    }
+
+
+                    //搜索历史流式布局
+                    //注意:流式布局就是一个控件，必须要套住才不会被冲散--AI也推荐套一个Item
+                    Item {
+                        anchors.top: searchLabel.bottom
                         anchors.topMargin: 10
+                        anchors.leftMargin: 10
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        height: 110
+                        Flow {
+                            id: singFlow
+                            anchors.fill: parent
+                            spacing: 10//为什么控制每个label的间距要加到这???
 
 
-                        Repeater{
-                        model: hotSongModel
-                        delegate: Rectangle{//代理控制每一行数据的显示
-                            width: singFlow.implicitWidth
-                            height: 30//这个高度太大也会导致间隔看齐变大
-                            color:"transparent"
-
-                            Label{
-                                id:hotSongIndexLable
-                                color:index<3?"#eb4d44":"#818187"//每个代理都有自己的索引
-                                text:String(index+1)
-                                anchors.left: parent.left
-                                anchors.leftMargin: 20
-                                anchors.verticalCenter: parent.verticalCenter
-                                font.pixelSize: 18
-                                font.family: "微软雅黑 Light"
-
-
-                            }
-
-                            Label{
-                                id:hotSongNameLable
-                                color:"#ddd"
-                                text: singName//只用一个属性用modelData
-                                anchors.left: hotSongIndexLable.right
-                                anchors.verticalCenter: parent.verticalCenter
-                                anchors.leftMargin: 20
-                                font.pixelSize: 18
-                                font.family: "微软雅黑 Light"
-
-
-                            }
-
-                            // 鼠标事件也要放入代理中
-                            MouseArea {
+                            // 基于数据模型的重复器（生成多个标签）
+                            Repeater {
+                                id: historyRep
                                 anchors.fill: parent
-                                hoverEnabled: true
 
-                                onEntered: {
-                                    parent.color = "#393943"
-                                    cursorShape = Qt.PointingHandCursor
-                                }
 
-                                onExited: {
-                                    parent.color = "transparent"
-                                    cursorShape = Qt.ArrowCursor
-                                }
 
-                                onClicked: {
-                                    searchTextField.text = singName
-                                    searchPop.close()
+                                model: searchSingModel
+
+
+                                //整个区域是个代理
+                                delegate: Rectangle {
+                                    width: dataLabel.implicitWidth + 20
+                                    height: 30
+                                    border.width: 1
+                                    border.color: "#45454e"
+                                    color: "#2d2d37"
+                                    radius: 15
+
+                                    Label {
+                                        id: dataLabel
+                                        text: modelData//只用一个属性用modelData
+                                        font.pixelSize: 15
+                                        anchors.centerIn: parent
+                                        color: "#ddd"
+                                        font.family: "微软雅黑 Light"
+                                        // height: 50//无效
+                                    }
+
+                                    MouseArea{
+                                        anchors.fill: parent
+                                        hoverEnabled: true
+                                        onEntered: {
+                                            dataLabel.color="white"
+                                            parent.color="#393943"
+                                            cursorShape=Qt.PointingHandCursor
+                                        }
+                                        onExited:  {
+                                            dataLabel.color="#ddd"
+                                            parent.color="#2d2d37"
+                                            cursorShape=Qt.ArrowCursor
+
+                                        }
+                                    }
                                 }
                             }
-
                         }
                     }
 
+                    //热搜榜
+                    Item{
+                        id:hotSongItem
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+
+                        height: 30
+
+                        Label{
+                            id:hotSongLable
+                            color:"#7f7f85"
+                            text: "热搜榜"
+                            anchors.left: parent.left
+                            anchors.leftMargin: 30
+                            height: 30
+                            font.pixelSize: 18
+                            font.family: "微软雅黑 Light"
 
 
+                            horizontalAlignment: Text.AlignHCenter  // 水平居中
+                            verticalAlignment: Text.AlignBottom     // 垂直靠下（贴下边缘）
+                        }
+
+                        //把重复器用列布局包裹住
+                        Column{
+                            anchors.left: parent.left
+                            anchors.right: parent.bottom
+                            anchors.bottom: parent.bottom
+
+                            anchors.top: hotSongLable.bottom
+                            anchors.topMargin: 10
+
+
+                            Repeater{
+                            model: hotSongModel
+                            delegate: Rectangle{//代理控制每一行数据的显示
+                                width: singFlow.implicitWidth
+                                height: 30//这个高度太大也会导致间隔看齐变大
+                                color:"transparent"
+
+                                Label{
+                                    id:hotSongIndexLable
+                                    color:index<3?"#eb4d44":"#818187"//每个代理都有自己的索引
+                                    text:String(index+1)
+                                    anchors.left: parent.left
+                                    anchors.leftMargin: 20
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    font.pixelSize: 18
+                                    font.family: "微软雅黑 Light"
+
+
+                                }
+
+                                Label{
+                                    id:hotSongNameLable
+                                    color:"#ddd"
+                                    text: singName//只用一个属性用modelData
+                                    anchors.left: hotSongIndexLable.right
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    anchors.leftMargin: 20
+                                    font.pixelSize: 18
+                                    font.family: "微软雅黑 Light"
+
+
+                                }
+
+                                // 鼠标事件也要放入代理中
+                                MouseArea {
+                                    anchors.fill: parent
+                                    hoverEnabled: true
+
+                                    onEntered: {
+                                        parent.color = "#393943"
+                                        cursorShape = Qt.PointingHandCursor
+                                    }
+
+                                    onExited: {
+                                        parent.color = "transparent"
+                                        cursorShape = Qt.ArrowCursor
+                                    }
+
+                                    onClicked: {
+                                        searchTextField.text = singName
+                                        searchPop.close()
+                                    }
+                                }
+
+                            }
+                        }
+
+
+
+
+                        }
 
                     }
+
 
                 }
 
 
             }
+
 
         }
     }
