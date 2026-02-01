@@ -57,22 +57,27 @@ ApplicationWindow {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            ScrollView {
+            Item {
                 clip: true
+                anchors.fill: parent
 
                 ColumnLayout {
                     width: parent.width
+                    height:parent.height
                     spacing: 15
 
                     //诺干用户填写框框
                     GridLayout {
+                        id:userInputGridLayout
                         columns: 5
                         columnSpacing: 10
                         rowSpacing: 10
                         Layout.fillWidth: true
+                        anchors.top: parent.top
+                        margins: 10
 
                         Label {
-                            text: "本节所有标题的级数:"
+                            text: "本节标题的级数:"
                             color: foregroundColor
                             // Layout.columnSpan: 2//横跨2列
                         }
@@ -107,7 +112,7 @@ ApplicationWindow {
                         TextField {
                             id: titleTextEdit
                             text: "一"
-                            Layout.preferredHeight: 35
+                            // Layout.preferredHeight: 35
                             Material.accent: primaryColor
                         }
 
@@ -152,9 +157,15 @@ ApplicationWindow {
                         }
                     }
 
+                    //生成的文本框
                     ScrollView {
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 200
+
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.bottom: parent.bottom
+                        anchors.top: userInputGridLayout.bottom
+
+
                         clip: true
 
                         TextArea {
@@ -166,6 +177,7 @@ ApplicationWindow {
                             font.family: "Courier New"
                             font.pixelSize: 12
                             Material.background: backgroundColor
+
                         }
                     }
                 }
