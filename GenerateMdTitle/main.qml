@@ -57,6 +57,7 @@ ApplicationWindow {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
+            // "一.99(,)类型"
             Item {
                 clip: true
                 anchors.fill: parent
@@ -127,7 +128,7 @@ ApplicationWindow {
                             from: 1
                             to: 999999999
                             value: 1
-                            Layout.preferredWidth: 150
+                            // Layout.preferredWidth: 150
                             Material.accent: primaryColor
                         }
 
@@ -146,7 +147,7 @@ ApplicationWindow {
                             text: "生成文本并自动复制"
                             Material.background: primaryColor
                             highlighted: true
-                            Layout.preferredWidth: 200
+                            // Layout.preferredWidth: 200
                             onClicked: {
                                 generateMdTitle.generateNumberSeries(
                                     seriesComboBox.currentIndex,
@@ -184,18 +185,24 @@ ApplicationWindow {
                 }
             }
 
-            ScrollView {
+            // "时间类型"
+            Item {
                 clip: true
+                anchors.fill: parent
 
                 ColumnLayout {
-                    width: parent.width
+                    anchors.fill: parent
                     spacing: 15
+                    // Layout.margins: 20
+                    anchors.margins:10
 
                     GridLayout {
-                        columns: 4
+                        id:userInputTimeGridLayout
+                        columns: 5
                         columnSpacing: 10
                         rowSpacing: 10
                         Layout.fillWidth: true
+                        anchors.top: parent.top
 
                         Label {
                             text: "本节标题的级数:"
@@ -207,14 +214,22 @@ ApplicationWindow {
                             color: foregroundColor
                         }
 
+                        Item {
+
+                        }
+
                         Label {
                             text: "本节共有多少道题:"
                             color: foregroundColor
                         }
 
+                        Item {
+
+                        }
+
                         ComboBox {
                             id: seriesComboBox2
-                            Layout.preferredWidth: 140
+                            // Layout.preferredWidth: 140
                             Material.accent: primaryColor
                             model: ["#", "##", "###", "####", "#####", "######"]
                         }
@@ -222,16 +237,7 @@ ApplicationWindow {
                         TextField {
                             id: titleTextEdit2
                             text: "0h59min"
-                            Layout.preferredHeight: 35
-                            Material.accent: primaryColor
-                        }
-
-                        SpinBox {
-                            id: questionNumSpinBox2
-                            from: 1
-                            to: 999999999
-                            value: 1
-                            Layout.preferredWidth: 150
+                            // Layout.preferredHeight: 35
                             Material.accent: primaryColor
                         }
 
@@ -240,9 +246,13 @@ ApplicationWindow {
                             color: foregroundColor
                         }
 
-                        Item {
-                            Layout.columnSpan: 4
-                            Layout.fillWidth: true
+                        SpinBox {
+                            id: questionNumSpinBox2
+                            from: 1
+                            to: 999999999
+                            value: 1
+                            // Layout.preferredWidth: 150
+                            Material.accent: primaryColor
                         }
 
                         CheckBox {
@@ -251,15 +261,16 @@ ApplicationWindow {
                             Material.accent: primaryColor
                         }
 
-                        Item {
-                            Layout.fillWidth: true
-                        }
 
                         Button {
+                            //和GridLayout一样宽
+                            Layout.fillWidth: true
+                            Layout.columnSpan: 5
+
                             text: "生成文本并自动复制"
                             Material.background: primaryColor
                             highlighted: true
-                            Layout.preferredWidth: 200
+                            // Layout.preferredWidth: 200
                             onClicked: {
                                 generateMdTitle.generateTimeSeries(
                                     seriesComboBox2.currentIndex,
@@ -272,8 +283,10 @@ ApplicationWindow {
                     }
 
                     ScrollView {
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 200
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.bottom: parent.bottom
+                        anchors.top: userInputTimeGridLayout.bottom
                         clip: true
 
                         TextArea {
@@ -290,16 +303,22 @@ ApplicationWindow {
                 }
             }
 
-            ScrollView {
+            // "整体升降标题"
+            Item {
                 clip: true
+                anchors.fill: parent
 
                 ColumnLayout {
-                    width: parent.width
+                    anchors.fill: parent
                     spacing: 15
+                    // Layout.margins: 20
+                    anchors.margins:10
+
 
                     RowLayout {
                         spacing: 10
                         Layout.fillWidth: true
+                        anchors.top: parent.top
 
                         Button {
                             text: "手中标题降低1级并自动复制(Ctrl+Shift+↓)"
@@ -324,7 +343,7 @@ ApplicationWindow {
 
                     ScrollView {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 200
+                        // Layout.preferredHeight: /*200*/
                         clip: true
 
                         TextArea {
@@ -341,12 +360,16 @@ ApplicationWindow {
                 }
             }
 
-            ScrollView {
+            // "年份序列自动+1"
+            Item {
                 clip: true
+                anchors.fill: parent
 
                 ColumnLayout {
-                    width: parent.width
+                    anchors.fill: parent
                     spacing: 15
+                    // Layout.margins: 20
+                    anchors.margins:10
 
                     GridLayout {
                         columns: 4
@@ -372,7 +395,7 @@ ApplicationWindow {
 
                         ComboBox {
                             id: seriesComboBox4
-                            Layout.preferredWidth: 140
+                            // Layout.preferredWidth: 140
                             Material.accent: primaryColor
                             model: ["#", "##", "###", "####", "#####", "######"]
                         }
@@ -382,7 +405,7 @@ ApplicationWindow {
                             from: 1
                             to: 999999999
                             value: 2001
-                            Layout.preferredWidth: 150
+                            // Layout.preferredWidth: 150
                             Material.accent: primaryColor
                         }
 
@@ -391,7 +414,7 @@ ApplicationWindow {
                             from: 1
                             to: 999999999
                             value: 1
-                            Layout.preferredWidth: 150
+                            // Layout.preferredWidth: 150
                             Material.accent: primaryColor
                         }
 
@@ -419,7 +442,7 @@ ApplicationWindow {
                             text: "生成文本并自动复制"
                             Material.background: primaryColor
                             highlighted: true
-                            Layout.preferredWidth: 200
+                            // Layout.preferredWidth: 200
                             onClicked: {
                                 generateMdTitle.generateYearSeries(
                                     seriesComboBox4.currentIndex,
@@ -433,7 +456,7 @@ ApplicationWindow {
 
                     ScrollView {
                         Layout.fillWidth: true
-                        Layout.preferredHeight: 200
+                        // Layout.preferredHeight: 200
                         clip: true
 
                         TextArea {
