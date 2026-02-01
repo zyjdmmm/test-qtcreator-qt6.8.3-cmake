@@ -1,16 +1,24 @@
 import QtQuick
 import QtQuick.Window
 import Qt5Compat.GraphicalEffects
+import QtQuick.Controls
 
 
 import "pages"//为什么只能导入文件夹并只能加入cmake编译???
-import "./"
+import "./basic"
 
 AGiaoMusicMainWindows {
     id:window
     width: 1000
     height: 500
 
+    Connections{
+        target:BasicConfig
+        function onOpenLoginPopup(){
+            loginPopup.open()
+        }
+
+    }
 
     // 左侧区域
     LeftPage{
@@ -43,7 +51,23 @@ AGiaoMusicMainWindows {
     }
 
 
+    //
+    Popup {
+        id: loginPopup
+        anchors.centerIn: parent
+        width: 466
+        height: 638
+        clip: true
+        closePolicy: Popup.NoAutoClose
 
+        background: Rectangle {
+            anchors.fill: parent
+            color: "#1b1b23"
+            radius: 10
+            border.width: 1
+            border.color: "#75777f"
+        }
+    }
 
 
 

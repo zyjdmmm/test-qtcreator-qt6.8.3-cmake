@@ -3,6 +3,7 @@ import QtQuick.Window
 import Qt5Compat.GraphicalEffects
 import QtQuick.Controls
 import "../components"
+import "../basic"
 
 Rectangle {
 
@@ -71,6 +72,11 @@ Rectangle {
                 // 鼠标离开时恢复原颜色
                 onExited: {
                     loadStateText.color = "#75777f"
+                }
+
+                onClicked: {
+
+                    openLoginPopup()
                 }
             }
         }
