@@ -18,5 +18,8 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
     engine.load(url);
 
+    //注册单例
+    qmlRegisterSingletonType(QUrl::fromLocalFile("./BasicConfig.qml"),"BasicConfig",1,0,"BasicConfig");
+
     return app.exec();
 }

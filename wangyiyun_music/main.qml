@@ -4,7 +4,7 @@ import Qt5Compat.GraphicalEffects
 
 
 import "pages"//为什么只能导入文件夹并只能加入cmake编译???
-
+import "./"
 
 AGiaoMusicMainWindows {
     id:window

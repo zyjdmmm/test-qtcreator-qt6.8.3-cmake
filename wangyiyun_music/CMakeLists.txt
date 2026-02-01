@@ -37,7 +37,7 @@ qt_add_qml_module(${PROJECT_NAME}
     QML_FILES main.qml pages/LeftPage.qml pages/PlayMusicPage.qml pages/RightPage.qml
     QML_FILES pages/AGiaoMusicMainWindows.qml
     QML_FILES components/SearchRow.qml
-    QML_FILES BasicConfig.qml
+    QML_FILES basic/BasicConfig.qml basic/qmldir
 )
 
 #-------------------------------------------#
