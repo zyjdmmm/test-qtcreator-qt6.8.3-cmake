@@ -13,6 +13,14 @@ Rectangle {
 
     property string receivedData: "等待数据..."
 
+    Connections {
+        target: AppSingleton
+        function onDataChanged(newData) {
+            root.receivedData = newData
+            console.log("组件接收到信号:", newData)
+        }
+    }
+
     Column {
         anchors.centerIn: parent
         spacing: 10
@@ -29,16 +37,5 @@ Rectangle {
             font.pixelSize: 14
             anchors.horizontalCenter: parent.horizontalCenter
         }
-    }
-
-    Component.onCompleted: {
-        AppSingleton.dataChanged.connect(function(newData) {
-            root.receivedData = newData
-            console.log("组件接收到信号:", newData)
-        })
-    }
-
-    Component.onDestruction: {
-        AppSingleton.dataChanged.disconnect()
     }
 }

@@ -35,6 +35,8 @@ Window {
             text: "发送数据到组件"
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: {
+
+                //第一步：发送信号
                 AppSingleton.dataChanged("Hello from Button!")
             }
         }
