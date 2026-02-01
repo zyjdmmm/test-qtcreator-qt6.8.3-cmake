@@ -62,9 +62,10 @@ ApplicationWindow {
                 anchors.fill: parent
 
                 ColumnLayout {
-                    width: parent.width
-                    height:parent.height
+                    anchors.fill: parent
                     spacing: 15
+                    // Layout.margins: 20
+                    anchors.margins:10
 
                     //诺干用户填写框框
                     GridLayout {
@@ -74,7 +75,7 @@ ApplicationWindow {
                         rowSpacing: 10
                         Layout.fillWidth: true
                         anchors.top: parent.top
-                        margins: 10
+
 
                         Label {
                             text: "本节标题的级数:"
