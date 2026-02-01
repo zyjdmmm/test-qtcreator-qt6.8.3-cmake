@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls
 import "./basic"
+import "./components"
 
 Window {
     id: window
@@ -12,7 +13,7 @@ Window {
 
     Column {
         anchors.centerIn: parent
-        spacing: 20
+        spacing: 30
 
         Text {
             text: "应用名称: " + AppSingleton.appName
@@ -26,11 +27,15 @@ Window {
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
+        DataReceiver {
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+
         Button {
-            text: "点击调用单例方法"
+            text: "发送数据到组件"
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: {
-                AppSingleton.showMessage("按钮被点击了！")
+                AppSingleton.dataChanged("Hello from Button!")
             }
         }
     }
