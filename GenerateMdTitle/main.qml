@@ -28,16 +28,7 @@ ApplicationWindow {
     ColumnLayout {
         anchors.fill: parent
         spacing: 10
-        // padding: 20
 
-        Label {
-            text: "Markdown 标题生成器"
-            font.pixelSize: 28
-            font.bold: true
-            color: foregroundColor
-            Layout.alignment: Qt.AlignHCenter
-            Layout.bottomMargin: 10
-        }
 
         TabBar {
             id: tabBar
@@ -73,8 +64,9 @@ ApplicationWindow {
                     width: parent.width
                     spacing: 15
 
+                    //诺干用户填写框框
                     GridLayout {
-                        columns: 4
+                        columns: 5
                         columnSpacing: 10
                         rowSpacing: 10
                         Layout.fillWidth: true
@@ -82,7 +74,7 @@ ApplicationWindow {
                         Label {
                             text: "本节所有标题的级数:"
                             color: foregroundColor
-                            Layout.columnSpan: 2
+                            // Layout.columnSpan: 2//横跨2列
                         }
 
                         Label {
@@ -90,10 +82,20 @@ ApplicationWindow {
                             color: foregroundColor
                         }
 
+                         // 占位空位
+                        Item {
+
+                        }
+
                         Label {
                             text: "本节共有多少道题:"
                             color: foregroundColor
                         }
+
+                        // 占位空位
+                       Item {
+
+                       }
 
                         ComboBox {
                             id: seriesComboBox
@@ -109,6 +111,11 @@ ApplicationWindow {
                             Material.accent: primaryColor
                         }
 
+                        Label {
+                            text: "点"
+                            color: foregroundColor
+                        }
+
                         SpinBox {
                             id: questionNumSpinBox
                             from: 1
@@ -118,27 +125,18 @@ ApplicationWindow {
                             Material.accent: primaryColor
                         }
 
-                        Label {
-                            text: "点"
-                            color: foregroundColor
-                        }
-
-                        Item {
-                            Layout.columnSpan: 4
-                            Layout.fillWidth: true
-                        }
-
                         CheckBox {
                             id: addSelectStrCheckBox
                             text: "末尾添加\"选择\"字符"
                             Material.accent: primaryColor
                         }
 
-                        Item {
-                            Layout.fillWidth: true
-                        }
 
                         Button {
+                            //和GridLayout一样宽
+                            Layout.fillWidth: true
+                            Layout.columnSpan: 5
+
                             text: "生成文本并自动复制"
                             Material.background: primaryColor
                             highlighted: true
@@ -187,9 +185,8 @@ ApplicationWindow {
                         Layout.fillWidth: true
 
                         Label {
-                            text: "本节所有标题的级数:"
+                            text: "本节标题的级数:"
                             color: foregroundColor
-                            Layout.columnSpan: 2
                         }
 
                         Label {
