@@ -124,13 +124,14 @@ ApplicationWindow {
                         }
 
                         SpinBox {
-                            id: questionNumSpinBox
-                            from: 1
-                            to: 999999999
-                            value: 1
-                            // Layout.preferredWidth: 150
-                            Material.accent: primaryColor
-                        }
+                                id: questionNumSpinBox
+                                from: 1
+                                to: 999999999
+                                value: 1
+                                editable: true
+                                //Layout.preferredWidth: 150
+                                Material.accent: primaryColor
+                            }
 
                         CheckBox {
                             id: addSelectStrCheckBox
@@ -144,7 +145,7 @@ ApplicationWindow {
                             Layout.fillWidth: true
                             Layout.columnSpan: 5
 
-                            text: "生成文本并自动复制"
+                            text: "🌸生成文本并自动复制"
                             Material.background: primaryColor
                             highlighted: true
                             // Layout.preferredWidth: 200
@@ -247,13 +248,14 @@ ApplicationWindow {
                         }
 
                         SpinBox {
-                            id: questionNumSpinBox2
-                            from: 1
-                            to: 999999999
-                            value: 1
-                            // Layout.preferredWidth: 150
-                            Material.accent: primaryColor
-                        }
+                                id: questionNumSpinBox2
+                                from: 1
+                                to: 999999999
+                                value: 1
+                                editable: true
+                                //Layout.preferredWidth: 150
+                                Material.accent: primaryColor
+                            }
 
                         CheckBox {
                             id: addSelectStrCheckBox2
@@ -267,7 +269,7 @@ ApplicationWindow {
                             Layout.fillWidth: true
                             Layout.columnSpan: 5
 
-                            text: "生成文本并自动复制"
+                            text: "🚀生成文本并自动复制"
                             Material.background: primaryColor
                             highlighted: true
                             // Layout.preferredWidth: 200
@@ -321,7 +323,7 @@ ApplicationWindow {
                         anchors.top: parent.top
 
                         Button {
-                            text: "手中标题降低1级并自动复制(Ctrl+Shift+↓)"
+                            text: "⬇️ 手中标题降低1级并自动复制(Ctrl+Shift+↓)"
                             Material.background: primaryColor
                             highlighted: true
                             Layout.fillWidth: true
@@ -331,7 +333,7 @@ ApplicationWindow {
                         }
 
                         Button {
-                            text: "手中标题提升1级并自动复制(Ctrl+Shift+↑)"
+                            text: "⬆️ 手中标题提升1级并自动复制(Ctrl+Shift+↑)"
                             Material.background: primaryColor
                             highlighted: true
                             Layout.fillWidth: true
@@ -405,6 +407,7 @@ ApplicationWindow {
                             from: 1
                             to: 999999999
                             value: 2001
+                            editable: true
                             // Layout.preferredWidth: 150
                             Material.accent: primaryColor
                         }
@@ -414,6 +417,7 @@ ApplicationWindow {
                             from: 1
                             to: 999999999
                             value: 1
+                            editable: true
                             // Layout.preferredWidth: 150
                             Material.accent: primaryColor
                         }
@@ -439,7 +443,7 @@ ApplicationWindow {
                         }
 
                         Button {
-                            text: "生成文本并自动复制"
+                            text: "💕 生成文本并自动复制"
                             Material.background: primaryColor
                             highlighted: true
                             // Layout.preferredWidth: 200
