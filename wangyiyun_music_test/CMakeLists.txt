@@ -15,6 +15,7 @@ qt_add_qml_module(appwangyiyun_music_test
     URI wangyiyun_music_test
     VERSION 1.0
     QML_FILES main.qml
+    RESOURCES image.qrc
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
