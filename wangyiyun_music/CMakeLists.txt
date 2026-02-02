@@ -2,7 +2,7 @@ project(wangyiyun_music)
 
 #-------------------------------------------#
 # Qt 核心自动编译工具(固定的不用改)
-# 注意qtcreator不会添加图片的qrc时自动添加set(CMAKE_AUTORCC ON)，简直是有大病
+# 注意：qtcreator不会添加图片的qrc时自动添加set(CMAKE_AUTORCC ON)，简直是有大病
 #-------------------------------------------#
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
