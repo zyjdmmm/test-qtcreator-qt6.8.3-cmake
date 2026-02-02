@@ -26,7 +26,7 @@ Window {
         }
 
         Image {
-            source: "qrc:/test.svg"
+            source: "qrc:/galaxy.png"
             width: 100
             height: 100
             anchors.horizontalCenter: parent.horizontalCenter
