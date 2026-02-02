@@ -726,6 +726,30 @@ Window {
                     Layout.fillHeight: true
                     clip: true
 
+                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                    ScrollBar.vertical.policy: ScrollBar.AsNeeded
+
+                    ScrollBar.vertical: ScrollBar {
+                        policy: ScrollBar.AsNeeded
+                        contentItem: Rectangle {
+                            implicitWidth: 8
+                            radius: 4
+                            color: "#FFB6C1"
+                            opacity: parent.active ? 1.0 : 0.5
+
+                            Rectangle {
+                                anchors.fill: parent
+                                radius: 4
+                                color: "#FF6B9D"
+                                opacity: parent.pressed ? 1.0 : 0.7
+                            }
+                        }
+                        background: Rectangle {
+                            implicitWidth: 8
+                            color: "transparent"
+                        }
+                    }
+
                     ListView {
                         width: parent.width
                         height: parent.height
@@ -808,6 +832,162 @@ Window {
                 }
             }
         }
+
+        Frame {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 250
+            padding: 20
+            background: Rectangle {
+                color: "#FFFFFF"
+                radius: 8
+                border.color: "#FFB6C1"
+                border.width: 2
+            }
+
+            ColumnLayout {
+                anchors.fill: parent
+                spacing: 15
+
+                Text {
+                    text: qsTr("11. TreeView (树形控件)")
+                    font.pixelSize: 16
+                    font.bold: true
+                    color: "#FF6B9D"
+                }
+
+                ScrollView {
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    clip: true
+
+                    ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+                    ScrollBar.vertical.policy: ScrollBar.AsNeeded
+
+                    ScrollBar.vertical: ScrollBar {
+                        policy: ScrollBar.AsNeeded
+                        contentItem: Rectangle {
+                            implicitWidth: 8
+                            radius: 4
+                            color: "#FFB6C1"
+                            opacity: parent.active ? 1.0 : 0.5
+
+                            Rectangle {
+                                anchors.fill: parent
+                                radius: 4
+                                color: "#FF6B9D"
+                                opacity: parent.pressed ? 1.0 : 0.7
+                            }
+                        }
+                        background: Rectangle {
+                            implicitWidth: 8
+                            color: "transparent"
+                        }
+                    }
+
+                    ListView {
+                        id: treeView
+                        width: parent.width
+                        height: parent.height
+                        model: treeModel
+
+                        delegate: Rectangle {
+                            width: parent.width
+                            height: 40
+                            color: index % 2 === 0 ? "#FFF0F5" : "#FFFFFF"
+                            radius: 4
+
+                            Row {
+                                anchors.fill: parent
+                                spacing: 10
+                                leftPadding: model.indent * 20
+
+                                Rectangle {
+                                    width: 20
+                                    height: 20
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    color: "transparent"
+
+                                    Text {
+                                        anchors.centerIn: parent
+                                        text: model.hasChildren ? (model.expanded ? "▼" : "▶") : ""
+                                        color: "#FF6B9D"
+                                        font.pixelSize: 12
+                                    }
+
+                                    MouseArea {
+                                        anchors.fill: parent
+                                        enabled: model.hasChildren
+                                        onClicked: {
+                                            treeModel.toggleExpand(index)
+                                        }
+                                    }
+                                }
+
+                                Text {
+                                    anchors.verticalCenter: parent.verticalCenter
+                                    text: model.name
+                                    color: "#4A4A4A"
+                                    font.pixelSize: 13
+                                    font.bold: model.hasChildren
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     }
 }
+
+// QtObject {
+//     id: treeModel
+
+//     property var treeData: [
+//         { name: "根节点 1", hasChildren: true, expanded: true, indent: 0, children: [
+//             { name: "子节点 1.1", hasChildren: true, expanded: false, indent: 1, children: [
+//                 { name: "叶子节点 1.1.1", hasChildren: false, expanded: false, indent: 2, children: [] },
+//                 { name: "叶子节点 1.1.2", hasChildren: false, expanded: false, indent: 2, children: [] }
+//             ]},
+//             { name: "子节点 1.2", hasChildren: false, expanded: false, indent: 1, children: [] },
+//             { name: "子节点 1.3", hasChildren: true, expanded: false, indent: 1, children: [
+//                 { name: "叶子节点 1.3.1", hasChildren: false, expanded: false, indent: 2, children: [] }
+//             ]}
+//         ]},
+//         { name: "根节点 2", hasChildren: true, expanded: true, indent: 0, children: [
+//             { name: "子节点 2.1", hasChildren: false, expanded: false, indent: 1, children: [] },
+//             { name: "子节点 2.2", hasChildren: false, expanded: false, indent: 1, children: [] }
+//         ]},
+//         { name: "根节点 3", hasChildren: false, expanded: false, indent: 0, children: [] }
+//     ]
+
+//     function getFlatList(data, result) {
+//         if (!result) result = []
+//         for (var i = 0; i < data.length; i++) {
+//             result.push(data[i])
+//             if (data[i].expanded && data[i].hasChildren) {
+//                 getFlatList(data[i].children, result)
+//             }
+//         }
+//         return result
+//     }
+
+//     function toggleExpand(flatIndex) {
+//         var flatList = getFlatList(treeData)
+//         var item = flatList[flatIndex]
+//         if (item && item.hasChildren) {
+//             item.expanded = !item.expanded
+//             treeModel.modelChanged()
+//         }
+//     }
+
+//     function modelChanged() {
+//         var flatList = getFlatList(treeData)
+//         treeView.model = flatList
+//     }
+
+//     Component.onCompleted: {
+//         modelChanged()
+//     }
+// }
+
