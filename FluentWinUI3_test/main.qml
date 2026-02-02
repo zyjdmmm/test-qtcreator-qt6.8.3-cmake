@@ -11,18 +11,25 @@ Window {
     title: qsTr("FluentWinUI3 组件测试 - 粉色系")
     color: "#FFF0F5"
 
-    ColumnLayout {
+    ScrollView {
         anchors.fill: parent
-        anchors.margins: 30
-        spacing: 30
+        clip: true
 
-        Text {
-            text: qsTr("FluentWinUI3 组件测试")
-            font.pixelSize: 28
-            font.bold: true
-            color: "#FF6B9D"
-            Layout.alignment: Qt.AlignHCenter
-        }
+        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+        ScrollBar.vertical.policy: ScrollBar.AsNeeded
+
+        ColumnLayout {
+            width: parent.width
+            anchors.margins: 30
+            spacing: 30
+
+            Text {
+                text: qsTr("FluentWinUI3 组件测试")
+                font.pixelSize: 28
+                font.bold: true
+                color: "#FF6B9D"
+                Layout.alignment: Qt.AlignHCenter
+            }
 
         Frame {
             Layout.fillWidth: true
@@ -333,9 +340,6 @@ Window {
                 }
             }
         }
-
-        Item {
-            Layout.fillHeight: true
-        }
+    }
     }
 }
