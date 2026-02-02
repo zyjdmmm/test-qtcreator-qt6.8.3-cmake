@@ -1,8 +1,14 @@
 import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import QtQuick.Controls.FluentWinUI3
 
 Window {
-    width: 640
-    height: 480
+    id: window
+    width: 1200
+    height: 800
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("FluentWinUI3 组件测试 - 粉色系")
+
+
 }
