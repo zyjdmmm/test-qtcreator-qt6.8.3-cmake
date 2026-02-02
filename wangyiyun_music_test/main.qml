@@ -27,9 +27,19 @@ Window {
 
         Image {
             source: "qrc:/galaxy.png"
-            width: 100
-            height: 100
+            // width: 100
+            // height: 100
+            scale:0.1
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+
+        Image {
+            source: "qrc:/test.svg"
             anchors.horizontalCenter: parent.horizontalCenter
         }
     }
 }
+
+
+
+
