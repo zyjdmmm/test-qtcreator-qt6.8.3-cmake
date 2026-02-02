@@ -37,7 +37,7 @@ ApplicationWindow {
         anchors.right: parent.right
         anchors.margins: 15
         spacing: 10
-        z: 1000
+        z: 100
 
         Button {
             text: isPinkTheme ? "🌸 Pink Theme" : "🚀 Sci-Fi Blue"

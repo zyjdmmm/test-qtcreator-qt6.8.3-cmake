@@ -13,9 +13,10 @@ Rectangle {
 
     property string receivedData: "等待数据..."
 
+    //第三步：连接
     Connections {
-        target: AppSingleton
-        function onDataChanged(newData) {
+        target: AppSingleton// 指定要监听哪个对象发出的信号
+        function onDataChanged(newData) {//加上前缀on再将信号首字母大写
             root.receivedData = newData
             console.log("组件接收到信号:", newData)
         }

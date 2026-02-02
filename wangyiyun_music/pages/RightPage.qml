@@ -75,8 +75,8 @@ Rectangle {
                 }
 
                 onClicked: {
-
-                    openLoginPopup()
+                    //第一步：发送信号
+                    BasicConfig.openLoginPopup()
                 }
             }
         }
