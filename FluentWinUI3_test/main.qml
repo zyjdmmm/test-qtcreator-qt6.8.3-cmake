@@ -729,26 +729,26 @@ Window {
                     ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                     ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-                    ScrollBar.vertical: ScrollBar {
-                        policy: ScrollBar.AsNeeded
-                        contentItem: Rectangle {
-                            implicitWidth: 8
-                            radius: 4
-                            color: "#FFB6C1"
-                            opacity: parent.active ? 1.0 : 0.5
+                    // ScrollBar.vertical: ScrollBar {
+                    //     policy: ScrollBar.AsNeeded
+                    //     contentItem: Rectangle {
+                    //         implicitWidth: 8
+                    //         radius: 4
+                    //         color: "#FFB6C1"
+                    //         opacity: parent.active ? 1.0 : 0.5
 
-                            Rectangle {
-                                anchors.fill: parent
-                                radius: 4
-                                color: "#FF6B9D"
-                                opacity: parent.pressed ? 1.0 : 0.7
-                            }
-                        }
-                        background: Rectangle {
-                            implicitWidth: 8
-                            color: "transparent"
-                        }
-                    }
+                    //         Rectangle {
+                    //             anchors.fill: parent
+                    //             radius: 4
+                    //             color: "#FF6B9D"
+                    //             opacity: parent.pressed ? 1.0 : 0.7
+                    //         }
+                    //     }
+                    //     background: Rectangle {
+                    //         implicitWidth: 8
+                    //         color: "transparent"
+                    //     }
+                    // }
 
                     ListView {
                         width: parent.width
@@ -863,26 +863,26 @@ Window {
                     ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
                     ScrollBar.vertical.policy: ScrollBar.AsNeeded
 
-                    ScrollBar.vertical: ScrollBar {
-                        policy: ScrollBar.AsNeeded
-                        contentItem: Rectangle {
-                            implicitWidth: 8
-                            radius: 4
-                            color: "#FFB6C1"
-                            opacity: parent.active ? 1.0 : 0.5
+                    // ScrollBar.vertical: ScrollBar {
+                    //     policy: ScrollBar.AsNeeded
+                    //     contentItem: Rectangle {
+                    //         implicitWidth: 8
+                    //         radius: 4
+                    //         color: "#FFB6C1"
+                    //         opacity: parent.active ? 1.0 : 0.5
 
-                            Rectangle {
-                                anchors.fill: parent
-                                radius: 4
-                                color: "#FF6B9D"
-                                opacity: parent.pressed ? 1.0 : 0.7
-                            }
-                        }
-                        background: Rectangle {
-                            implicitWidth: 8
-                            color: "transparent"
-                        }
-                    }
+                    //         Rectangle {
+                    //             anchors.fill: parent
+                    //             radius: 4
+                    //             color: "#FF6B9D"
+                    //             opacity: parent.pressed ? 1.0 : 0.7
+                    //         }
+                    //     }
+                    //     background: Rectangle {
+                    //         implicitWidth: 8
+                    //         color: "transparent"
+                    //     }
+                    // }
 
                     ListView {
                         id: treeView
