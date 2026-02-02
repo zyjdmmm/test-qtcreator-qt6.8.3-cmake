@@ -53,6 +53,10 @@ AGiaoMusicMainWindows {
         clip: true
         closePolicy: Popup.NoAutoClose
 
+        onOpened:{
+            // showAnimation.restart()
+        }
+
         background: Rectangle {
             anchors.fill: parent
             color: "#1b1b23"
@@ -87,10 +91,11 @@ AGiaoMusicMainWindows {
                 }
 
                 MouseArea{
+                    anchors.fill: parent
+                    hoverEnabled: true//必须有这句，强制接收鼠标事件
                     onClicked: {
                         loginPopup.close()
                     }
-
                     z:100
                 }
             }
@@ -102,11 +107,46 @@ AGiaoMusicMainWindows {
                 color: "white"
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
-                anchors.topMargin: 100
+                anchors.topMargin: 50
                 font.bold: true
                 font.family: "黑体"
                 font.pixelSize: 32
             }
+
+            Image{
+                id:galaxy
+                x:15
+                y:132
+                source: "qrc:/image/galaxy.png"
+
+
+                // 只设置一个维度，另一个维度自动等比缩放
+                width: 160
+                fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+                //抗锯齿
+                smooth: true
+                mipmap: true
+           }
+
+            Image{
+                id:qrcode
+                x:190
+                y:180
+
+                source: "qrc:/image/qrcode.svg"
+
+
+                // // 只设置一个维度，另一个维度自动等比缩放
+                width: 100
+                fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+                //抗锯齿
+                smooth: true
+                mipmap: true
+           }
+
+
         }
 
 

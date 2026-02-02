@@ -11,5 +11,7 @@
         <file>image/search.svg</file>
         <file>image/singer.svg</file>
         <file>image/trash.svg</file>
+        <file>image/galaxy.png</file>
+        <file>image/qrcode.svg</file>
     </qresource>
 </RCC>
