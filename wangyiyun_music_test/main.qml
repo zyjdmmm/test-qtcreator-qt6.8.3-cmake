@@ -8,7 +8,7 @@ Window {
     width: 800
     height: 600
     visible: true
-    title: AppSingleton.appName
+    // title: AppSingleton.appName
 
     Column {
         anchors.centerIn: parent
