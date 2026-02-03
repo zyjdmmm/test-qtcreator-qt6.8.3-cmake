@@ -54,7 +54,8 @@ AGiaoMusicMainWindows {
         closePolicy: Popup.NoAutoClose
 
         onOpened:{
-            // showAnimation.restart()
+            showAnimation.onlyShowQrcodeFlag=false
+            showAnimation.start()
         }
 
         background: Rectangle {
@@ -144,7 +145,76 @@ AGiaoMusicMainWindows {
                 //抗锯齿
                 smooth: true
                 mipmap: true
+
+                MouseArea{
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: {
+                        showAnimation.onlyShowQrcodeFlag=true
+                        showAnimation.start()
+                    }
+                    onExited:{
+                        showAnimation.onlyShowQrcodeFlag=false
+                        showAnimation.start()
+                    }
+                }
+
+
            }
+
+            ParallelAnimation{
+                id:showAnimation
+                property bool onlyShowQrcodeFlag: true
+
+                //galaxy
+                NumberAnimation {
+                    target: galaxy
+                    property: "x"
+                    duration: 500
+                    from:showAnimation.onlyShowQrcodeFlag?15:200
+                    to:showAnimation.onlyShowQrcodeFlag?200:15
+                }
+
+                NumberAnimation {
+                    target: galaxy
+                    property: "y"
+                    duration: 500
+                    from:showAnimation.onlyShowQrcodeFlag?132:0
+                    to:showAnimation.onlyShowQrcodeFlag?0:132
+                }
+                NumberAnimation {
+                    target: galaxy
+                    property: "opacity"
+                    duration: 500
+                    from:showAnimation.onlyShowQrcodeFlag?1:0
+                    to:showAnimation.onlyShowQrcodeFlag?0:1
+                }
+
+                // qrcode
+                NumberAnimation {
+                    target: qrcode
+                    property: "x"
+                    duration: 500
+                    from:showAnimation.onlyShowQrcodeFlag?190:50
+                    to:showAnimation.onlyShowQrcodeFlag?50:190
+                }
+                NumberAnimation {
+                    target: qrcode
+                    property: "y"
+                    duration: 500
+                    from:showAnimation.onlyShowQrcodeFlag?180:100
+                    to:showAnimation.onlyShowQrcodeFlag?100:180
+                }
+                NumberAnimation {
+                    target: qrcode
+                    property: "width"
+                    duration: 500
+                    from:showAnimation.onlyShowQrcodeFlag?100:200
+                    to:showAnimation.onlyShowQrcodeFlag?200:100
+                }
+
+
+            }
 
 
         }
