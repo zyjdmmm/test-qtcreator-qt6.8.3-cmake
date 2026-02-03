@@ -39,6 +39,7 @@ qt_add_qml_module(${PROJECT_NAME}
     QML_FILES pages/AGiaoMusicMainWindows.qml
     QML_FILES components/SearchRow.qml
     QML_FILES basic/BasicConfig.qml basic/qmldir
+    QML_FILES pages/LoginPopupPage.qml
 )
 
 #-------------------------------------------#
