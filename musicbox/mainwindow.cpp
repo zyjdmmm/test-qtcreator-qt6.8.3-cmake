@@ -51,7 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     exportImage->getpoint(centralWidget->musicWindow);//获得point数据
 
     //打开并解析文件
-    connect(openAction,&QAction::triggered,readMidi,read_midi::openFile);//connect不如说成是connect(实例，&类：方法)
+    connect(openAction,&QAction::triggered,readMidi,&read_midi::openFile);//connect不如说成是connect(实例，&类：方法)
 
     //解析文件的结果数据交给move_point_slot槽函数处理
     connect(readMidi,SIGNAL(point_move_signal(int,int)),centralWidget->musicWindow,SLOT(move_point_slot(int,int)));
@@ -60,11 +60,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(outAction,&QAction::triggered,exportImage,&export_image::drawPicture);
 
     //15音模式
-    connect(note_15,&QAction::triggered,this,MainWindow::export_check_btn_set_15);
+    connect(note_15,&QAction::triggered,this,&MainWindow::export_check_btn_set_15);
     //20音模式
-    connect(note_20,&QAction::triggered,this,MainWindow::export_check_btn_set_20);
+    connect(note_20,&QAction::triggered,this,&MainWindow::export_check_btn_set_20);
     //30音模式
-    connect(note_30,&QAction::triggered,this,MainWindow::export_check_btn_set_30);
+    connect(note_30,&QAction::triggered,this,&MainWindow::export_check_btn_set_30);
     //默认加载15音
     export_check_btn_set_15();//槽函数居然也可以直接用
 
