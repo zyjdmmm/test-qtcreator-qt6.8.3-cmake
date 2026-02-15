@@ -19,7 +19,7 @@ find_package(Qt6 REQUIRED COMPONENTS QuickControls2 Quick) #cmake与qt有狗屁�
 #-------------------------------------------#
 #手动添加你的源文件
 #-------------------------------------------#
-qt_add_executable(${PROJECT_NAME}
+qt_add_executable(app${PROJECT_NAME}
     main.cpp
 )
 
@@ -28,9 +28,12 @@ qt_add_executable(${PROJECT_NAME}
 #
 # 用qt_add_resources：只能通过 engine.load(QUrl(":/xxx.qml")) 直接加载，无法 import
 # 用qt_add_qml_module：可通过 import 模块名导入使用，是 Qt 6 推荐的 QML 组件化方式
+
+# 注意：qt官方写法所有地方都要添加app前缀为app${PROJECT_NAME}，除了这里URI ${PROJECT_NAME}。
+# 原因：加入没有app前缀，在windows系统可以编译成功，但是linux会报错找不到程序，我发现根本原因是在build文件夹会生成比如aaa文件夹和aaa可执行文件，因为aaa可执行文件在linux没有exe后缀，所以qtcreator错误找到了aaa文件夹
 #-------------------------------------------#
-qt_add_qml_module(${PROJECT_NAME}
-    URI ${PROJECT_NAME}
+qt_add_qml_module(app${PROJECT_NAME}
+    URI ${PROJECT_NAME}     # 注意只有这里不加app前缀，这是官方写法
     VERSION 1.0
     RESOURCES image.qrc
 
@@ -40,13 +43,13 @@ qt_add_qml_module(${PROJECT_NAME}
     QML_FILES components/SearchRow.qml
     QML_FILES basic/BasicConfig.qml basic/qmldir
     QML_FILES pages/LoginPopupPage.qml
-    QML_FILES pages/LoginPopupByOtherMeansPage.qml
+#    QML_FILES pages/LoginPopupByOtherMeansPage.qml
 )
 
 #-------------------------------------------#
 #最后链接qt提供的库
 #-------------------------------------------#
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(app${PROJECT_NAME}
     PRIVATE
     Qt6::Quick
     Qt6::QuickControls2
@@ -56,7 +59,7 @@ target_link_libraries(${PROJECT_NAME}
 #-------------------------------------------#
 # 属性配置(固定的不用改)
 #-------------------------------------------#
-set_target_properties(${PROJECT_NAME} PROPERTIES
+set_target_properties(app${PROJECT_NAME} PROPERTIES
     WIN32_EXECUTABLE TRUE                        # 如果没有这个，双击exe即使在release模式也会弹出黑控制台
 )
 
