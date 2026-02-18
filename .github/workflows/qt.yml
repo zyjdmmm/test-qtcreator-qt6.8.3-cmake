@@ -26,56 +26,53 @@ jobs:
 
     steps:
       # 1. 拉取代码
-      - name: Checkout code
+      - name: 拉取代码
         uses: actions/checkout@v4
 
-      # 2. 安装 Qt 6.8.3（核心步骤）
-      - name: Install Qt 6.8.3
+      # 安装 Qt 6.8.3
+      - name: 安装 Qt 6.8.3
         uses: jurplel/install-qt-action@v4
         with:
-          # 基础配置
-          version: '6.8.3'          # Qt 版本
-          host: ${{ runner.os == 'Windows' && 'windows' || runner.os == 'macOS' && 'mac' || 'linux' }}
-          target: 'desktop'         # 桌面端编译
-          arch: ${{ matrix.qt_arch }}  # 架构（区分 MinGW/gcc/clang）
-          dir: ${{ github.workspace }}/qt-install  # Qt 安装目录
-          
-          # 可选配置（根据需求调整）
-          install-deps: true        # Linux 自动安装依赖（如libgl1-mesa-dev等）
-          modules: 'qtcharts qtwebengine'  # 额外安装的Qt模块（按需添加/删除）
-          cache: true               # 缓存Qt安装包（加速后续构建）
-          cache-key-prefix: 'qt683-${{ matrix.os }}'  # 缓存前缀（区分平台）
-          setup-python: true        # 自动安装Python（aqtinstall依赖）
-          set-env: true             # 自动设置QT_ROOT_DIR等环境变量
+          version: '6.8.3'
+          host: ${{ runner.os == 'Windows' && 'windows' || 'linux' }}
+          target: 'desktop'
+          arch: ${{ matrix.qt_arch }}
+          dir: ${{ github.workspace }}/qt-install
+          install-deps: true
+          cache: true
+          cache-key-prefix: 'qt683-${{ matrix.os }}'
+          setup-python: true
+          set-env: true
 
-      # 3. 平台专属依赖/环境配置
-      - name: Linux 额外依赖
+      # Linux 依赖
+      - name: Linux 依赖
         if: matrix.os == 'ubuntu-22.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential libgl1-mesa-dev libxcb-xinerama0-dev
 
-      - name: Windows MinGW 环境配置
+      # Windows MinGW 配置
+      - name: Windows MinGW 配置
         if: matrix.os == 'windows-10'
         run: |
-          # 将MinGW加入PATH（Qt安装的MinGW路径）
           echo "${{ github.workspace }}/qt-install/Qt/6.8.3/mingw_64/bin" >> $GITHUB_PATH
-          # 验证mingw编译器
           g++ --version
 
-      # 4. 编译Qt项目（以CMake为例，qmake同理）
-      - name: 编译项目（CMake）
+      # 编译项目
+      - name: 编译项目
         run: |
-          # 创建构建目录
           mkdir -p build && cd build
-          # CMake配置（Qt 6 无需手动设置CMAKE_PREFIX_PATH，Action已自动配置）
           cmake .. -DCMAKE_CXX_COMPILER=${{ matrix.build_env == 'mingw' && 'g++' || matrix.build_env }}
-          # 编译
-          cmake --build . --config Release -j $(nproc || sysctl -n hw.ncpu || echo 4)
+          # 跨平台并行编译
+          if [[ "${{ matrix.os }}" == "windows-10" ]]; then
+            cmake --build . --config Release -j 4
+          else
+            cmake --build . --config Release -j $(nproc || echo 4)
+          fi
 
-      # 5. （可选）上传编译产物
+      # 上传产物
       - name: 上传产物
         uses: actions/upload-artifact@v4
         with:
           name: qt683-build-${{ matrix.os }}
-          path: build/Release/  # 产物路径（根据项目调整）
+          path: build/Release/
