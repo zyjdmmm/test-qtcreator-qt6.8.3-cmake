@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.19) #find_package(QT NAMES Qt6 Qt5 REQUIRED) #CMake 3.19+之后，2021年Qt官方和CMake官方约定好的QT名称
 
-project(test-qtcreator-qt6.8.3-cmake)
+project(test_qtcreator-qt6.8.3-cmake)
 
 
 
