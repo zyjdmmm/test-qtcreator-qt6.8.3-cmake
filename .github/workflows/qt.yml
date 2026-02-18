@@ -39,6 +39,7 @@ jobs:
           arch: ${{ matrix.qt_arch }}
           dir: ${{ github.workspace }}/qt-install
           install-deps: true
+          modules: ''  # 移除可能导致问题的额外模块
           cache: true
           cache-key-prefix: 'qt683-${{ matrix.os }}'
           setup-python: true
