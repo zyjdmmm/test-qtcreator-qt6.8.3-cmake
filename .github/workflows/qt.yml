@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false  # 一个平台失败不影响其他平台
       matrix:
-        os: [ubuntu-22.04, windows-10, macos-14]
+        os: [ubuntu-22.04, windows-10]
         include:
           # Windows 专属配置：指定 MinGW 架构
           - os: windows-10
@@ -23,10 +23,6 @@ jobs:
           - os: ubuntu-22.04
             qt_arch: gcc_64
             build_env: gcc
-          # macOS 专属配置
-          - os: macos-14
-            qt_arch: clang_64
-            build_env: clang
 
     steps:
       # 1. 拉取代码
