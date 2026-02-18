@@ -1,79 +1,29 @@
-name: Qt 6.8.3 跨平台编译
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+name: TagView-CI-MinGW
 
-# 定义构建矩阵：覆盖 Ubuntu/macOS/Windows，指定 Windows 用 MinGW
+on: [push]
+
+env:
+  QT_VERSION: 6.8.3
+
 jobs:
   build:
-    name: ${{ matrix.os }} - Qt 6.8.3
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false  # 一个平台失败不影响其他平台
-      matrix:
-        os: [ubuntu-22.04, windows-latest]
-        include:
-          # Windows 专属配置：指定 MinGW 架构
-          - os: windows-latest
-            qt_arch: win64_mingw_w64  # Qt 6.8.3 MinGW 架构标识
-            build_env: mingw
-          # Ubuntu 专属配置
-          - os: ubuntu-22.04
-            qt_arch: gcc_64
-            build_env: gcc
+    name: "Build"
+    runs-on: windows-latest
 
     steps:
-      # 1. 拉取代码
-      - name: 拉取代码
-        uses: actions/checkout@v4
+      - name: Install ninja (windows)
+        run: choco install ninja
 
-      # 安装 Qt 6.8.3
-      - name: 安装 Qt 6.8.3
-        uses: jurplel/install-qt-action@v4
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
         with:
-          version: '6.8.3'
-          host: ${{ runner.os == 'Windows' && 'windows' || 'linux' }}
-          target: 'desktop'
-          arch: ${{ matrix.qt_arch }}
-          dir: ${{ github.workspace }}/qt-install
-          install-deps: true
-          modules: ''  # 移除可能导致问题的额外模块
-          cache: true
-          cache-key-prefix: 'qt683-${{ matrix.os }}'
-          setup-python: true
-          set-env: true
+          version: ${{env.QT_VERSION}}
+          arch: win64_mingw
 
-      # Linux 依赖
-      - name: Linux 依赖
-        if: matrix.os == 'ubuntu-22.04'
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Build
         run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential libgl1-mesa-dev libxcb-xinerama0-dev
-
-      # Windows MinGW 配置
-      - name: Windows MinGW 配置
-        if: matrix.os == 'windows-10'
-        run: |
-          echo "${{ github.workspace }}/qt-install/Qt/6.8.3/mingw_64/bin" >> $GITHUB_PATH
-          g++ --version
-
-      # 编译项目
-      - name: 编译项目
-        run: |
-          mkdir -p build && cd build
-          cmake .. -DCMAKE_CXX_COMPILER=${{ matrix.build_env == 'mingw' && 'g++' || matrix.build_env }}
-          # 跨平台并行编译
-          if [[ "${{ matrix.os }}" == "windows-10" ]]; then
-            cmake --build . --config Release -j 4
-          else
-            cmake --build . --config Release -j $(nproc || echo 4)
-          fi
-
-      # 上传产物
-      - name: 上传产物
-        uses: actions/upload-artifact@v4
-        with:
-          name: qt683-build-${{ matrix.os }}
-          path: build/Release/
+          cmake -S . -B build_dir -G "Ninja Multi-Config"
+          cmake --build build_dir --config Release
