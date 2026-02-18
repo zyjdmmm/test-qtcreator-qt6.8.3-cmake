@@ -23,6 +23,13 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
 
+      - name: Add MinGW to PATH
+        run: |
+          # 添加指定的 MinGW 路径到 PATH
+          echo "C:/mingw64/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          # 验证 MinGW 可用性
+          g++ --version
+
       - name: Build
         run: |
           cmake -S . -B build_dir -G "Ninja Multi-Config"
