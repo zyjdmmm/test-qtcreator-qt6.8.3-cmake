@@ -28,8 +28,8 @@ Popup {
             // scale: 2
             anchors.top: parent.top
             anchors.right: parent.right
-            anchors.topMargin: 15
-            anchors.rightMargin: 30
+            anchors.topMargin: 20
+            anchors.rightMargin: 20
             source: "qrc:/image/close.svg"
 
 
@@ -201,49 +201,6 @@ Popup {
             }
         }
 
-        // //关闭按钮
-        // Image {
-        //     id:closeImg1
-        //     anchors.top: parent.top
-        //     anchors.right: parent.right
-        //     anchors.topMargin: 20
-        //     anchors.rightMargin: 20
-
-
-        //     source: "qrc:/image/close.svg"
-
-        //     // 只设置一个维度，另一个维度自动等比缩放
-        //     width: 15
-        //     fillMode: Image.PreserveAspectFit  // 核心：等比缩放
-
-        //     //抗锯齿
-        //     smooth: true
-        //     mipmap: true
-
-        //     //实现图片高亮(没办法只能用qt5，qt6连ai都没搞明白怎么弄)
-        //     layer.enabled: false
-        //     layer.effect: ColorOverlay {
-        //         source: closeImg
-        //         color: "white"
-        //     }
-        //     MouseArea {
-        //         anchors.fill: parent
-        //         hoverEnabled: true
-
-        //         onEntered: {
-        //             closeImg.layer.enabled = true
-        //         }
-        //         onExited: {
-        //             closeImg.layer.enabled = false
-        //         }
-        //         onClicked: {
-        //             loginPopupByOtherMeansPage.close()
-        //         }
-        //     }
-
-
-
-        // }
 
 
     }

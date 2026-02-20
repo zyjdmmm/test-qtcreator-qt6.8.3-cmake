@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Window
 import Qt5Compat.GraphicalEffects
 import QtQuick.Controls
-
+import "../basic"
 
 Popup {
     anchors.centerIn: parent
@@ -113,9 +113,36 @@ Popup {
                     loginPopupByOtherMeansPage.close()
                 }
             }
+        }
 
+        Row {
+            id: titleRowItems
+            spacing: 10
+            anchors.topMargin: 50
+            anchors.leftMargin: 20
+            anchors.top: parent.top
+            anchors.horizontalCenter: parent.horizontalCenter
 
+            Image {
+                source: "qrc:/image/logo.svg"
 
+                // 只设置一个维度，另一个维度自动等比缩放
+                width: 40
+                fillMode: Image.PreserveAspectFit  // 核心：等比缩放
+
+                //抗锯齿
+                smooth: true
+                mipmap: true
+            }
+
+            Label {
+                color: "white"
+                font.bold: true
+                text: "啊giao音乐"
+                font.pixelSize: 32
+                font.family: BasicConfig.commonFont
+                anchors.verticalCenter: parent.verticalCenter
+            }
         }
 
 

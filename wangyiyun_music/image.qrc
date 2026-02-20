@@ -13,5 +13,6 @@
         <file>image/trash.svg</file>
         <file>image/galaxy.png</file>
         <file>image/qrcode.svg</file>
+        <file>image/logo.svg</file>
     </qresource>
 </RCC>
