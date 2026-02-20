@@ -38,9 +38,39 @@ Popup {
             mipmap: true
 
             MouseArea{
-                anchors.fill: parent
+                anchors.left: parent.left
+                anchors.top: parent.top
+                width: 50
+                height: 50
                 hoverEnabled: true
 
+                onEntered: {
+                    cursorShape =Qt.PointingHandCursor
+
+                }
+                onExited: {
+                    cursorShape =Qt.ArrowCursor
+                }
+                onClicked: {
+                    loginPopupByOtherMeansPage.close()
+                    loginPopup.open()
+                }
+
+            }
+        }
+
+        Canvas {
+            id: canvas
+            anchors.fill: parent
+            onPaint: {
+                let ctx = canvas.getContext("2d")
+                ctx.beginPath()
+                ctx.moveTo(110, 1)
+                ctx.lineTo(1, 110)
+                ctx.lineTo(110, 110)
+                ctx.lineTo(110, 1)
+                ctx.fillStyle = "#1b1b23"
+                ctx.fill()
             }
         }
 
