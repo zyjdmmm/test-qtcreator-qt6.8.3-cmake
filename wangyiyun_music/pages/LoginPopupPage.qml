@@ -175,6 +175,33 @@ Popup {
         }
 
 
+        Text {
+            color: "#75777f"
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 20
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: "选择其他方式登录 >"
+            font.pixelSize: 20
+            // font.family: BasicConfig.commFont
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: {
+                    cursorShape = Qt.PointingHandCursor
+                }
+                onExited: {
+                    cursorShape = Qt.ArrowCursor
+                }
+                onClicked: {
+                    // 这里可以添加点击事件处理逻辑
+                    loginPopup.close()
+                    loginPopupByOtherMeansPage.open()
+                }
+            }
+        }
+
+
     }
 
 

@@ -60,7 +60,10 @@ AGiaoMusicMainWindows {
 
     }
 
+    LoginPopupByOtherMeansPage{
+        id:loginPopupByOtherMeansPage
 
+    }
 
 
 
