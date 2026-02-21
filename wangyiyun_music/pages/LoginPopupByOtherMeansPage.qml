@@ -119,8 +119,9 @@ Popup {
             id: titleRowItems
             spacing: 10
             anchors.topMargin: 50
-            anchors.leftMargin: 20
+            anchors.leftMargin: 60
             anchors.top: parent.top
+            anchors.left: parent.left
             anchors.horizontalCenter: parent.horizontalCenter
 
             Image {
