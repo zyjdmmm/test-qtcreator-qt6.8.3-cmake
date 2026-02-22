@@ -1,0 +1,35 @@
+name: Fixed Clean Win11 Env
+on: [push]
+
+jobs:
+  clean-env:
+    runs-on: windows-latest
+    steps:
+      - name: 安装 ninja
+        run: choco install ninja
+
+
+      - name: 安装 Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          aqtversion: '==3.1.*'
+          version: '6.8.3'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_mingw'
+          modules: 'qt5compat'
+          # 注意：一定要下载qt本版本自带的编译器tools_mingw1310中的gcc.exe，这样install-qt-action@v4工具会帮你把这几个工具特别是mingw1310的路径置顶
+          # 注意：大多数环境变量清空方法我试过都无效，在下一个run环境又会被重置，github actions就是很奇葩
+          tools: 'tools_mingw1310 tools_ninja tools_cmake'
+
+      - name: 下载项目代码
+        uses: actions/checkout@v4
+
+
+      - name: 编译
+        run: |
+          Write-Host "✅ 最后检查一次PATH："
+          $env:PATH -split ';' | ForEach-Object { Write-Host "  $_" }
+
+          cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -G Ninja
+          cmake --build ./build
