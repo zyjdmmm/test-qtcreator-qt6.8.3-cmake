@@ -146,6 +146,103 @@ Popup {
             }
         }
 
+        Column {
+            id: loginColumnItems
+            anchors.top: titleRowItems.bottom
+            anchors.topMargin: 40
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            TextField {
+                id: telNumberTextField
+                width: 250
+                height: 30
+                font.pixelSize: height/2
+                font.family: BasicConfig.commFont
+                color: BasicConfig.fieldTextColor
+                placeholderText: "请输入手机号"
+                placeholderTextColor: BasicConfig.defaultFontNormalColor
+                verticalAlignment: Text.AlignVCenter
+                // leftPadding:60
+
+                background: Rectangle {
+                    anchors.fill: parent
+                    radius: telNumberTextField.height/2
+                    color: BasicConfig.fieldBgColor
+                    border.width: 1
+                    border.color: telNumberTextField.focus?BasicConfig.fieldBgColor:BasicConfig.fieldBgColor
+
+
+                    Item {
+                        id: countryTelTextItem
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        anchors.left: parent.left
+                        width: telNumberTextField.leftPadding
+
+                        Row {
+                            anchors.centerIn: parent
+                            spacing: 10
+
+                            Label {
+                                id: countryTelNumText
+                                text: "+86"
+                                color: "white"
+                                font.bold: true
+                                font.pixelSize: 20
+                                font.family: BasicConfig.commFont
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+                            Label {
+                                id: arrowLabel
+                                text: ">"
+                                color: "white"
+                                rotation: 90
+                                font.bold: true
+                                font.pixelSize: 20
+                                font.family: BasicConfig.commFont
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+                            MouseArea {
+                                anchors.fill: parent
+                                hoverEnabled: true
+
+                                onEntered: {
+                                    cursorShape = Qt.PointingHandCursor
+                                }
+
+                                onExited: {
+                                    cursorShape = Qt.ArrowCursor
+                                }
+
+                                onClicked: {
+                                    telDataSipPop.open()
+                                }
+                            }
+                        }
+
+                        Popup{
+                            id:telDatasPop
+                            width: telNumberTextField.height
+                            y: telNumberTextField.height+5
+                            height: 370
+                            background: Rectangle{//美化
+
+
+
+
+
+                            }
+
+
+
+                        }
+                    }
+                }
+            }
+        }
+
 
     }
 }
