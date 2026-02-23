@@ -1,0 +1,37 @@
+name: ci-ubuntu
+ 
+on: [push]
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 安装 Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          aqtversion: '==3.1.*'
+          version: '6.8.3'
+          host: 'linux'
+          target: 'desktop'
+          arch: 'linux_gcc_64'
+          modules: 'qt5compat'
+          tools: 'tools_ninja tools_cmake'
+
+      - name: 下载项目代码
+        uses: actions/checkout@v4
+
+      - name: 编译
+        run: |
+          # # Linux下打印PATH环境变量（替换原PowerShell命令）
+          # echo "✅ 最后检查一次PATH："
+          # # 方式1：逐行打印PATH中的每个路径（推荐，直观）
+          # IFS=':' read -ra PATH_ARR <<< "$PATH"
+          # for PATH_ITEM in "${PATH_ARR[@]}"; do
+          #     echo "  $PATH_ITEM"
+          # done
+
+          # 执行编译命令（保留原有逻辑）
+          cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -G Ninja
+          cmake --build ./build

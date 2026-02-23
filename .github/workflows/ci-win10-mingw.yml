@@ -1,12 +1,13 @@
-name: Fixed Clean Win11 Env
+name: ci-win10-mingw
 on: [push]
 
 jobs:
   clean-env:
     runs-on: windows-latest
     steps:
-      - name: 安装 ninja
-        run: choco install ninja
+      # 注意：这个并不需要，qt自带下载的有ninja
+      # - name: 安装 ninja
+      #   run: choco install ninja
 
 
       - name: 安装 Qt
@@ -20,7 +21,8 @@ jobs:
           modules: 'qt5compat'
           # 注意：一定要下载qt本版本自带的编译器tools_mingw1310中的gcc.exe，这样install-qt-action@v4工具会帮你把这几个工具特别是mingw1310的路径置顶
           # 注意：大多数环境变量清空方法我试过都无效，在下一个run环境又会被重置，github actions就是很奇葩
-          tools: 'tools_mingw1310 tools_ninja tools_cmake'
+          #注意： 我试过tools_ninja tools_cmake是不用安装的，可以用自带的
+          tools: 'tools_mingw1310 tools_ninja tools_cmake' 
 
       - name: 下载项目代码
         uses: actions/checkout@v4

@@ -162,7 +162,7 @@ Popup {
                 placeholderText: "请输入手机号"
                 placeholderTextColor: BasicConfig.defaultFontNormalColor
                 verticalAlignment: Text.AlignVCenter
-                // leftPadding:60
+                leftPadding:60
 
                 background: Rectangle {
                     anchors.fill: parent
@@ -228,8 +228,30 @@ Popup {
                             y: telNumberTextField.height+5
                             height: 370
                             background: Rectangle{//美化
+                                anchors.fill: parent
+                                radius: 10
+                                color: "#2d2d37"
+                                clip: true
+                                ListView{
+                                    id:listView
+                                    anchors.fill: parent
+                                    anchors.topMargin: 15
+                                    ScrollBar.vertical: ScrollBar{
+                                        anchors.right: parent.right
+                                        anchors.rightMargin: 5
+                                        width: 10
+                                        contentItem: Rectangle{
+                                            visible: parent.active
+                                            implicitWidth: 10
+                                            radius: 4
+                                            color: "#42424b"
 
 
+                                        }
+
+                                    }
+
+                                }
 
 
 
