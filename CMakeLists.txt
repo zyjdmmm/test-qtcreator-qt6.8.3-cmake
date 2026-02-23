@@ -63,7 +63,7 @@ endif ()
 add_subdirectory(mytest_minimize)
 add_subdirectory(mytest_github_theme_myobject)
 add_subdirectory(mytest_action)
-add_subdirectory(musicbox)
+# add_subdirectory(musicbox)
 
 
 add_subdirectory(wangyiyun_music)
