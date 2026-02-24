@@ -172,96 +172,103 @@ Popup {
                     border.color: telNumberTextField.focus?BasicConfig.fieldBgColor:BasicConfig.fieldBgColor
 
 
-                    Item {
-                        id: countryTelTextItem
-                        anchors.top: parent.top
-                        anchors.bottom: parent.bottom
-                        anchors.left: parent.left
-                        width: telNumberTextField.leftPadding
 
-                        Row {
-                            anchors.centerIn: parent
-                            spacing: 10
+                }
 
-                            Label {
-                                id: countryTelNumText
-                                text: "+86"
-                                color: "white"
-                                font.bold: true
-                                font.pixelSize: 20
-                                font.family: BasicConfig.commFont
-                                anchors.verticalCenter: parent.verticalCenter
-                            }
+                //国家手机文本框框
+                Item {
+                    id: countryTelTextItem
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.left: parent.left
+                    width: telNumberTextField.leftPadding
 
-                            Label {
-                                id: arrowLabel
-                                text: ">"
-                                color: "white"
-                                rotation: 90
-                                font.bold: true
-                                font.pixelSize: 20
-                                font.family: BasicConfig.commFont
-                                anchors.verticalCenter: parent.verticalCenter
-                            }
+                    Row {
+                        anchors.centerIn: parent
+                        spacing: 10
 
-                            MouseArea {
-                                anchors.fill: parent
-                                hoverEnabled: true
-
-                                onEntered: {
-                                    cursorShape = Qt.PointingHandCursor
-                                }
-
-                                onExited: {
-                                    cursorShape = Qt.ArrowCursor
-                                }
-
-                                onClicked: {
-                                    telDataSipPop.open()
-                                }
-                            }
+                        Label {
+                            id: countryTelNumText
+                            text: "+86"
+                            color: "white"
+                            font.bold: true
+                            font.pixelSize: 20
+                            font.family: BasicConfig.commFont
+                            anchors.verticalCenter: parent.verticalCenter
                         }
 
-                        Popup{
-                            id:telDatasPop
-                            width: telNumberTextField.height
-                            y: telNumberTextField.height+5
-                            height: 370
-                            background: Rectangle{//美化
+                        Label {
+                            id: arrowLabel
+                            text: ">"
+                            color: "white"
+                            rotation: 90
+                            font.bold: true
+                            font.pixelSize: 20
+                            font.family: BasicConfig.commFont
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            hoverEnabled: true
+
+                            onEntered: {
+                                cursorShape = Qt.PointingHandCursor
+                            }
+
+                            onExited: {
+                                cursorShape = Qt.ArrowCursor
+                            }
+
+                            onClicked: {
+                                telDataSipPop.open()
+                            }
+                        }
+                    }
+
+                    Popup{
+                        id:telDatasPop
+                        width: telNumberTextField.height
+                        y: telNumberTextField.height+5
+                        height: 370
+                        background: Rectangle{//美化
+                            anchors.fill: parent
+                            radius: 10
+                            color: "#2d2d37"
+                            clip: true
+                            ListView{
+                                id:listView
                                 anchors.fill: parent
-                                radius: 10
-                                color: "#2d2d37"
-                                clip: true
-                                ListView{
-                                    id:listView
-                                    anchors.fill: parent
-                                    anchors.topMargin: 15
-                                    ScrollBar.vertical: ScrollBar{
-                                        anchors.right: parent.right
-                                        anchors.rightMargin: 5
-                                        width: 10
-                                        contentItem: Rectangle{
-                                            visible: parent.active
-                                            implicitWidth: 10
-                                            radius: 4
-                                            color: "#42424b"
+                                anchors.topMargin: 15
+                                ScrollBar.vertical: ScrollBar{
+                                    anchors.right: parent.right
+                                    anchors.rightMargin: 5
+                                    width: 10
+                                    contentItem: Rectangle{
+                                        visible: parent.active
+                                        implicitWidth: 10
+                                        radius: 4
+                                        color: "#42424b"
 
-
-                                        }
 
                                     }
 
                                 }
 
-
-
                             }
 
 
 
                         }
+
+
+
                     }
                 }
+
+
+
+
             }
         }
 
