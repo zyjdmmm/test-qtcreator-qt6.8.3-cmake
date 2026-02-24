@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 //    resize(1500,800);//打开时的尺寸
     setFixedSize(1500,800);//设置最小尺寸
-    setWindowIcon(QIcon(":/res/大白兔小.png"));
+    setWindowIcon(QIcon(":/res/white_rabbit_small.png"));
     setWindowTitle("大白兔测试0.1");
 
     centralWidget=new central_w(this);//类名和对象名一样会出问题

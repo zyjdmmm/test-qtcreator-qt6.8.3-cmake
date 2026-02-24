@@ -18,7 +18,7 @@ void music_point::set_music_point_0()
     noteFlag=0;
 
     QPixmap pix;//图片加载从这句开始
-    bool ret=pix.load(":/res/空圆.png");
+    bool ret=pix.load(":/res/empty_circle.png");
     if(!ret)//ret为0失败
         {
         qDebug()<<"图片加载失败";
@@ -38,7 +38,7 @@ void music_point::set_music_point_1()
     noteFlag=1;
 
     QPixmap pix;//图片加载从这句开始
-    bool ret=pix.load(":/res/绿圆.png");
+    bool ret=pix.load(":/res/green_circle.png");
     if(!ret)//ret为0失败
         {
         qDebug()<<"图片加载失败";
@@ -56,7 +56,7 @@ void music_point::set_music_point_2()
     noteFlag=2;
 
     QPixmap pix;//图片加载从这句开始
-    bool ret=pix.load(":/res/红圆.png");
+    bool ret=pix.load(":/res/red_circle.png");
     if(!ret)//ret为0失败
         {
         qDebug()<<"图片加载失败";

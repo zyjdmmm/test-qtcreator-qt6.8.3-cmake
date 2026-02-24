@@ -162,7 +162,7 @@ Popup {
                 placeholderText: "请输入手机号"
                 placeholderTextColor: BasicConfig.defaultFontNormalColor
                 verticalAlignment: Text.AlignVCenter
-                leftPadding:60
+                leftPadding:100
 
                 background: Rectangle {
                     anchors.fill: parent

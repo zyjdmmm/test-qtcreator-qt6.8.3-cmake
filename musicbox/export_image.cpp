@@ -97,7 +97,7 @@ void export_image::drawPicture()
 
         //图标
         QPixmap pix;//画布
-        pix.load(":/res/大白兔大.png");//再画布上放入图片
+        pix.load(":/res/white_rabbit_large.png");//再画布上放入图片
 
         //设置字体
         QFont font;//字体属性类对象，可以设置字体的属性
