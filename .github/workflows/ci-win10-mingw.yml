@@ -35,3 +35,11 @@ jobs:
 
           cmake -B ./build -DCMAKE_BUILD_TYPE=Debug -G Ninja
           cmake --build ./build
+
+      # 添加这一步：上传编译产物为artifacts
+      - name: 上传编译产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: musicbox-build
+          path: ./build/  # 上传build目录下的所有文件
+          retention-days: 30  # 产物保存30天
