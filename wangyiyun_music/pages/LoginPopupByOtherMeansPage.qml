@@ -223,21 +223,31 @@ Popup {
                         MouseArea {
                             anchors.fill: parent
                             hoverEnabled: true
-
+                            z: 10
 
                             onEntered: {
                                 cursorShape = Qt.PointingHandCursor
                             }
 
                             onExited: {
+                                console.log("Hello onExited!");
                                 cursorShape = Qt.ArrowCursor
                             }
 
                             onClicked: {
+                                 console.log("Hello onClicked!");
                                 telDatasPopup.open()
                             }
                         }
 
+
+                    }
+
+                    Popup{
+                        id:telDatasPopup
+                        width: telNumberTextField.height
+                        y: telNumberTextField.height+5
+                        height: 370
 
                     }
                 }
