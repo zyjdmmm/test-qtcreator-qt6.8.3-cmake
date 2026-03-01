@@ -2,6 +2,8 @@ import QtQuick
 import QtQuick.Window
 import Qt5Compat.GraphicalEffects
 import QtQuick.Controls
+import QtQuick.Layouts
+
 import "../basic"
 
 Popup {
@@ -152,18 +154,19 @@ Popup {
             anchors.topMargin: 40
             anchors.horizontalCenter: parent.horizontalCenter
 
-            TextField {
-                id: telNumberTextField
+            TextField{
+                id:telNumberTextField
                 width: 250
-                height: 30
-                font.pixelSize: height/2
-                font.family: BasicConfig.commFont
-                color: BasicConfig.fieldTextColor
-                placeholderText: "请输入手机号"
+                height:40
+                font.pixelSize:20
+                font.family: BasicConfig.commonFont
+                color: BasicConfig.fieldBgColor
+                placeholderText: "输入手机号"
                 placeholderTextColor: BasicConfig.defaultFontNormalColor
                 verticalAlignment: Text.AlignVCenter
-                leftPadding:100
+                leftPadding:70
 
+                //背景美化
                 background: Rectangle {
                     anchors.fill: parent
                     radius: telNumberTextField.height/2
@@ -172,45 +175,55 @@ Popup {
                     border.color: telNumberTextField.focus?BasicConfig.fieldBgColor:BasicConfig.fieldBgColor
 
 
+                    //原来这个+86是放在背景中的
+                    Item {
+                        id: countryTelTextItem
+                        anchors.top: parent.top
+                        anchors.bottom: parent.bottom
+                        anchors.left: parent.left
+                        width: telNumberTextField.leftPadding
 
-                }
+                        Row {
+                            anchors.centerIn: parent
+                            spacing: 3
 
-                //国家手机文本框框
-                Item {
-                    id: countryTelTextItem
-                    anchors.top: parent.top
-                    anchors.bottom: parent.bottom
-                    anchors.left: parent.left
-                    width: telNumberTextField.leftPadding
+                            Label {
+                                id: countryTelNumText
+                                text: "+86"
+                                color: "white"
+                                font.bold: true
+                                font.pixelSize: 20
+                                font.family: BasicConfig.commFont
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
 
-                    Row {
-                        anchors.centerIn: parent
-                        spacing: 10
 
-                        Label {
-                            id: countryTelNumText
-                            text: "+86"
-                            color: "white"
-                            font.bold: true
-                            font.pixelSize: 20
-                            font.family: BasicConfig.commFont
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
 
-                        Label {
-                            id: arrowLabel
-                            text: ">"
-                            color: "white"
-                            rotation: 90
-                            font.bold: true
-                            font.pixelSize: 20
-                            font.family: BasicConfig.commFont
-                            anchors.verticalCenter: parent.verticalCenter
+                            Label {
+                                id: arrowLabel
+                                text: ">"
+                                color: "white"
+                                rotation: 90
+                                font.bold: true
+                                font.pixelSize: 20
+                                font.family: BasicConfig.commFont
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+                            Rectangle{
+                                width: 2
+                                height: 20
+                                color: BasicConfig.defaultFontNormalColor
+                                anchors.verticalCenter: parent.verticalCenter
+                            }
+
+
                         }
 
                         MouseArea {
                             anchors.fill: parent
                             hoverEnabled: true
+
 
                             onEntered: {
                                 cursorShape = Qt.PointingHandCursor
@@ -221,58 +234,21 @@ Popup {
                             }
 
                             onClicked: {
-                                telDataSipPop.open()
+                                telDatasPopup.open()
                             }
                         }
-                    }
-
-                    Popup{
-                        id:telDatasPop
-                        width: telNumberTextField.height
-                        y: telNumberTextField.height+5
-                        height: 370
-                        background: Rectangle{//美化
-                            anchors.fill: parent
-                            radius: 10
-                            color: "#2d2d37"
-                            clip: true
-                            ListView{
-                                id:listView
-                                anchors.fill: parent
-                                anchors.topMargin: 15
-                                ScrollBar.vertical: ScrollBar{
-                                    anchors.right: parent.right
-                                    anchors.rightMargin: 5
-                                    width: 10
-                                    contentItem: Rectangle{
-                                        visible: parent.active
-                                        implicitWidth: 10
-                                        radius: 4
-                                        color: "#42424b"
-
-
-                                    }
-
-                                }
-
-                            }
-
-
-
-                        }
-
 
 
                     }
                 }
-
-
-
-
             }
+
+
+
         }
 
 
     }
 }
+
 
