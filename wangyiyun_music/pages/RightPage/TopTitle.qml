@@ -2,8 +2,8 @@ import QtQuick
 import QtQuick.Window
 import Qt5Compat.GraphicalEffects
 import QtQuick.Controls
-import "../components"
-import "../basic"
+import "../../components"
+import "../../basic"
 
 Rectangle {
 

@@ -6,6 +6,7 @@ import QtQuick.Controls
 
 import "pages"//为什么只能导入文件夹并只能加入cmake编译???
 import "./basic"
+import"./pages/RightPage"
 
 AGiaoMusicMainWindows {
     id:window
