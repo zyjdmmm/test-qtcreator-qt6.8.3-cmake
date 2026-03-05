@@ -44,7 +44,7 @@ qt_add_qml_module(app${PROJECT_NAME}
     QML_FILES basic/BasicConfig.qml basic/qmldir
     QML_FILES pages/LoginPopupPage.qml
     QML_FILES pages/LoginPopupByOtherMeansPage.qml
-    QML_FILES pages/RightPage/RightPage.qml pages/RightPage/TopTitle.qml
+    QML_FILES pages/RightPage/CherryPickPage.qml pages/RightPage/RightPage.qml pages/RightPage/SettingsPage.qml pages/RightPage/TopTitle.qml
 )
 
 #-------------------------------------------#

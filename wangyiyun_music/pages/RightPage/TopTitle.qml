@@ -234,6 +234,11 @@ Rectangle {
                 onExited: {
                     settings.layer.enabled = false
                 }
+
+                onClicked: {
+                    console.log("++++++++++++")
+                    mainStackView.push("./SettingsPage.qml")
+                }
             }
         }
 
