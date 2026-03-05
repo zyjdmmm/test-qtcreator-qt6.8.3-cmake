@@ -1,13 +1,18 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 
- #include "generatemdtitle.h"
+#include "generatemdtitle.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
+    GenerateMdTitle generateMdTitle;
+
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("generateMdTitle", &generateMdTitle);
+
     const QUrl url(QStringLiteral("qrc:/GenerateMdTitle/main.qml"));
     QObject::connect(
         &engine,

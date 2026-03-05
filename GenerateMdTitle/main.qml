@@ -6,7 +6,7 @@ import QtQuick.Layouts
 ApplicationWindow {
     id: window
     visible: true
-    width: 900
+    width: 784
     height: 700
     title: qsTr("GenerateMdTitle")
 
