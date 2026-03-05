@@ -28,7 +28,7 @@ Window {
             // 区号选择区域（可点击）
             MouseArea {
                 id: countryCodeClickArea
-                Layout.preferredWidth: 80
+                Layout.preferredWidth: 100
                 Layout.fillHeight: true
                 cursorShape: Qt.PointingHandCursor
 
@@ -41,7 +41,8 @@ Window {
                         spacing: 4
 
                         Text {
-                            text: currentCountryCode
+                            id:currentCountryCodeText
+                            text: "+86"
                             font.pixelSize: 16
                             color: "#333333"
                             verticalAlignment: Text.AlignVCenter
@@ -55,18 +56,19 @@ Window {
                         }
                     }
 
-                    // 右侧分隔线
-                    Rectangle {
-                        width: 1
-                        height: parent.height * 0.6
-                        color: "#e0e0e0"
-                        anchors.right: parent.right
-                        anchors.verticalCenter: parent.verticalCenter
-                    }
+
                 }
 
                 // 点击弹出国家码选择弹窗
                 onClicked: countryCodePopup.open()
+            }
+
+            // 右侧分隔线
+            Rectangle {
+                width: 1
+                height: parent.height * 0.6
+                color: "#e0e0e0"
+                anchors.verticalCenter: parent.verticalCenter
             }
 
             // 手机号输入框
@@ -93,15 +95,15 @@ Window {
             height: 300
             modal: true
             focus: true
-            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+            closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside // 点击任意其他地方关闭这个popup
 
             // 弹窗内容
             Rectangle {
                 anchors.fill: parent
                 color: "white"
                 radius: 8
-                border.color: "#e0e0e0"
-                border.width: 1
+                // border.color: "#e0e0e0"
+                // border.width: 1
 
                 // 弹窗标题
                 Text {
@@ -145,7 +147,7 @@ Window {
                             anchors.fill: parent
                             onClicked: {
                                 // 更新选中的国家码
-                                parent.parent.parent.currentCountryCode = countryCode
+                                currentCountryCodeText = countryCode
                                 parent.parent.parent.currentCountryName = countryName
                                 // 关闭弹窗
                                 countryCodePopup.close()
