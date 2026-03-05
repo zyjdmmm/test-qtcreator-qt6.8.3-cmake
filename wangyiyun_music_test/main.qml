@@ -19,7 +19,6 @@ Window {
         radius: 25
 
         // 当前选中的国家码
-        property string currentCountryCode: "+86"
         property string currentCountryName: "中国"
 
         RowLayout {
@@ -178,6 +177,7 @@ Window {
                                     color: "#666666"
                                     anchors.verticalCenter: parent.verticalCenter
                                     anchors.right: parent.right
+                                    rightPadding: 20
                                 }
 
                                 // 选中状态指示器
