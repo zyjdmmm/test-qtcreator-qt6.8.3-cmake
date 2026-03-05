@@ -94,16 +94,20 @@ Window {
             width: parent.width
             height: 300
             modal: true
-            focus: true
             closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside // 点击任意其他地方关闭这个popup
 
-            // 弹窗内容
-            Rectangle {
+            // 背景
+            background: Rectangle {
                 anchors.fill: parent
                 color: "white"
                 radius: 8
-                // border.color: "#e0e0e0"
-                // border.width: 1
+                border.color: "#e0e0e0"
+                border.width: 1
+            }
+
+            // 弹窗内容
+            Column {
+                anchors.fill: parent
 
                 // 弹窗标题
                 Text {
@@ -112,9 +116,9 @@ Window {
                     font.pixelSize: 18
                     font.bold: true
                     color: "#333333"
-                    anchors.top: parent.top
                     anchors.left: parent.left
                     anchors.margins: 16
+                    height: 40
                 }
 
                 // 国家码列表（使用Column布局）
@@ -147,8 +151,8 @@ Window {
                             anchors.fill: parent
                             onClicked: {
                                 // 更新选中的国家码
-                                currentCountryCodeText = countryCode
-                                parent.parent.parent.currentCountryName = countryName
+                                currentCountryCodeText.text = countryCode
+                                parent.parent.parent.parent.parent.currentCountryName = countryName
                                 // 关闭弹窗
                                 countryCodePopup.close()
                             }
@@ -181,7 +185,7 @@ Window {
                                     height: 20
                                     anchors.verticalCenter: parent.verticalCenter
                                     anchors.right: parent.right
-                                    visible: (countryCode === parent.parent.parent.currentCountryCode)
+                                    visible: (countryCode === currentCountryCodeText.text)
 
                                     Text {
                                         text: "✓"
