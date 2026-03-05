@@ -12,6 +12,7 @@ Window {
 
 
     Rectangle {
+        id: countryCodeContainer
         width: 360
         height: 50
         color: "#f5f5f5"
@@ -152,7 +153,7 @@ Window {
                             onClicked: {
                                 // 更新选中的国家码
                                 currentCountryCodeText.text = countryCode
-                                parent.parent.parent.parent.parent.currentCountryName = countryName
+                                countryCodeContainer.currentCountryName = countryName
                                 // 关闭弹窗
                                 countryCodePopup.close()
                             }
