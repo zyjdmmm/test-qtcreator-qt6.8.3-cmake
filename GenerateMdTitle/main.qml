@@ -162,13 +162,10 @@ ApplicationWindow {
 
                     //生成的文本框
                     ScrollView {
-
                         anchors.left: parent.left
                         anchors.right: parent.right
                         anchors.bottom: parent.bottom
                         anchors.top: userInputGridLayout.bottom
-
-
                         clip: true
 
                         TextArea {
@@ -344,8 +341,10 @@ ApplicationWindow {
                     }
 
                     ScrollView {
-                        Layout.fillWidth: true
-                        // Layout.preferredHeight: /*200*/
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.bottom: parent.bottom
+                        anchors.top: userInputGridLayout.bottom
                         clip: true
 
                         TextArea {
@@ -459,13 +458,15 @@ ApplicationWindow {
                     }
 
                     ScrollView {
-                        Layout.fillWidth: true
-                        // Layout.preferredHeight: 200
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        anchors.bottom: parent.bottom
+                        anchors.top: userInputGridLayout.bottom
                         clip: true
 
                         TextArea {
                             id: resultTextBrowser4
-                            text: generateMdTitle.resultText
+                            text: generateMdTitle.resultText//直接访问c++的属性
                             readOnly: true
                             wrapMode: TextArea.Wrap
                             color: textColor

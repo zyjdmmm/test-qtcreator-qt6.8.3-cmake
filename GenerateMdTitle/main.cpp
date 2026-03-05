@@ -11,6 +11,8 @@ int main(int argc, char *argv[])
     GenerateMdTitle generateMdTitle;
 
     QQmlApplicationEngine engine;
+
+    //注册c++类型，让qml能访问
     engine.rootContext()->setContextProperty("generateMdTitle", &generateMdTitle);
 
     const QUrl url(QStringLiteral("qrc:/GenerateMdTitle/main.qml"));
