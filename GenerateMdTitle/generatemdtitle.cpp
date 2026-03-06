@@ -46,6 +46,7 @@ void GenerateMdTitle::generateNumberSeries(int seriesIndex, QString title, int q
 
     QClipboard *clipboard = QGuiApplication::clipboard();
     clipboard->setText(result);
+    showNotification("已复制");
 }
 
 void GenerateMdTitle::generateTimeSeries(int seriesIndex, QString title, int questionNum, bool addSelectStr)
@@ -79,6 +80,7 @@ void GenerateMdTitle::generateTimeSeries(int seriesIndex, QString title, int que
 
     QClipboard *clipboard = QGuiApplication::clipboard();
     clipboard->setText(result);
+    showNotification("已复制");
 }
 
 void GenerateMdTitle::generateYearSeries(int seriesIndex, int startYear, int questionNum, bool addSelectStr)
@@ -111,6 +113,7 @@ void GenerateMdTitle::generateYearSeries(int seriesIndex, int startYear, int que
 
     QClipboard *clipboard = QGuiApplication::clipboard();
     clipboard->setText(result);
+    showNotification("已复制");
 }
 
 void GenerateMdTitle::downTitleLevel()
