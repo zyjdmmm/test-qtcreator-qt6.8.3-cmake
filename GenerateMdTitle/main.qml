@@ -315,6 +315,7 @@ ApplicationWindow {
 
 
                     RowLayout {
+                        id: userInputRowLayout
                         spacing: 10
                         Layout.fillWidth: true
                         anchors.top: parent.top
@@ -344,7 +345,7 @@ ApplicationWindow {
                         anchors.left: parent.left
                         anchors.right: parent.right
                         anchors.bottom: parent.bottom
-                        anchors.top: userInputGridLayout.bottom
+                        anchors.top: userInputRowLayout.bottom
                         clip: true
 
                         TextArea {
@@ -373,6 +374,7 @@ ApplicationWindow {
                     anchors.margins:10
 
                     GridLayout {
+                        id: userInputYearGridLayout
                         columns: 4
                         columnSpacing: 10
                         rowSpacing: 10
@@ -461,7 +463,7 @@ ApplicationWindow {
                         anchors.left: parent.left
                         anchors.right: parent.right
                         anchors.bottom: parent.bottom
-                        anchors.top: userInputGridLayout.bottom
+                        anchors.top: userInputYearGridLayout.bottom
                         clip: true
 
                         TextArea {
