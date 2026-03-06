@@ -35,15 +35,17 @@ ApplicationWindow {
         height: 50
 
         background: Rectangle {
-            color: Material.color(Material.Grey, Material.Shade800)
+            color: secondaryColor
             radius: 8
-            opacity: 0.9
+            border.color: primaryColor
+            border.width: 1
         }
 
         contentItem: Label {
             id: toastLabel
             text: ""
-            color: "white"
+            color: textColor
+            font.bold: true
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }
