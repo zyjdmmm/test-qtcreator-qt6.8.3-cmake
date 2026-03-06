@@ -183,4 +183,5 @@ void GenerateMdTitle::copyToClipboard(QString text)
 void GenerateMdTitle::showNotification(QString message)
 {
     qDebug() << "Notification:" << message;
+    emit showToast(message);
 }

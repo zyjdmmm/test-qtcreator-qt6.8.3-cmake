@@ -26,6 +26,7 @@ public:
 
 signals:
     void resultTextChanged();
+    void showToast(QString message);
 
 private:
     QString m_resultText;

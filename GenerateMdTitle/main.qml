@@ -25,6 +25,46 @@ ApplicationWindow {
     property color textColor: "#880E4F"
     property color borderColor: "#E91E63"
 
+    // Toast 弹窗提示
+    Popup {
+        id: toastPopup
+        modal: false
+        closePolicy: Popup.NoAutoClose
+        anchors.centerIn: parent
+        width: 200
+        height: 50
+
+        background: Rectangle {
+            color: Material.color(Material.Grey, Material.Shade800)
+            radius: 8
+            opacity: 0.9
+        }
+
+        contentItem: Label {
+            id: toastLabel
+            text: ""
+            color: "white"
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+        }
+
+        Timer {
+            id: toastTimer
+            interval: 2000
+            onTriggered: toastPopup.close()
+        }
+
+        function show(message) {
+            toastLabel.text = message
+            open()
+            toastTimer.start()
+        }
+    }
+
+    Component.onCompleted: {
+        generateMdTitle.showToast.connect(toastPopup.show)
+    }
+
     ColumnLayout {
         anchors.fill: parent
         spacing: 10
