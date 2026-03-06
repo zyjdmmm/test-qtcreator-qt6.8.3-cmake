@@ -113,7 +113,7 @@ void GenerateMdTitle::generateYearSeries(int seriesIndex, int startYear, int que
     clipboard->setText(result);
 }
 
-void GenerateMdTitle::upTitleLevel()
+void GenerateMdTitle::downTitleLevel()
 {
     QClipboard *clipboard = QGuiApplication::clipboard();
     QString clipboardText = clipboard->text();
@@ -121,17 +121,17 @@ void GenerateMdTitle::upTitleLevel()
 
     if (clipboardText.contains("\n# "))
     {
-        showNotification("警告：已经是1级标题，无法提升");
+        showNotification("警告：已经是1级标题，无法降低");
         return;
     }
     else if (!clipboardText.contains("# "))
     {
-        showNotification("警告：不包含任何标题，无法提升");
+        showNotification("警告：不包含任何标题，无法降低");
         return;
     }
     else
     {
-        showNotification("提升1级成功");
+        showNotification("降低1级成功");
         modifiedText.replace("## ", "# ");
     }
 
@@ -143,25 +143,25 @@ void GenerateMdTitle::upTitleLevel()
     }
 }
 
-void GenerateMdTitle::downTitleLevel()
+void GenerateMdTitle::upTitleLevel()
 {
     QClipboard *clipboard = QGuiApplication::clipboard();
     QString clipboardText = clipboard->text();
     QString modifiedText = clipboardText;
 
-    if (clipboardText.contains("###### "))
+    if (clipboardText.contains("\n###### "))
     {
-        showNotification("警告：已经是6级标题，无法降低");
+        showNotification("警告：已经是6级标题，无法提升");
         return;
     }
     else if (!clipboardText.contains("# "))
     {
-        showNotification("警告：不包含任何标题，无法降低");
+        showNotification("警告：不包含任何标题，无法提升");
         return;
     }
     else
     {
-        showNotification("降低1级成功");
+        showNotification("提升1级成功");
         modifiedText.replace("# ", "## ");
     }
 
