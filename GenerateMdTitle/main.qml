@@ -373,27 +373,31 @@ ApplicationWindow {
                     // Layout.margins: 20
                     anchors.margins:10
 
+                    //诺干用户填写框框
                     GridLayout {
-                        id: userInputYearGridLayout
-                        columns: 4
+                        id:userInputYearGridLayout
+                        columns: 5
                         columnSpacing: 10
                         rowSpacing: 10
                         Layout.fillWidth: true
+                        anchors.top: parent.top
 
                         Label {
                             text: "本节所有标题的级数:"
+                            color: foregroundColor
+
+                        }
+
+                        Label {
+                            text: "开始年份:"
                             color: foregroundColor
                             Layout.columnSpan: 2
                         }
 
                         Label {
-                            text: "本节标题:"
-                            color: foregroundColor
-                        }
-
-                        Label {
                             text: "本节共有多少道题:"
                             color: foregroundColor
+                            Layout.columnSpan: 2
                         }
 
                         ComboBox {
@@ -413,6 +417,11 @@ ApplicationWindow {
                             Material.accent: primaryColor
                         }
 
+                        Label {
+                            text: "点"
+                            color: foregroundColor
+                        }
+
                         SpinBox {
                             id: questionNumSpinBox4
                             from: 1
@@ -423,15 +432,6 @@ ApplicationWindow {
                             Material.accent: primaryColor
                         }
 
-                        Label {
-                            text: "点"
-                            color: foregroundColor
-                        }
-
-                        Item {
-                            Layout.columnSpan: 4
-                            Layout.fillWidth: true
-                        }
 
                         CheckBox {
                             id: addSelectStrCheckBox4
@@ -439,11 +439,11 @@ ApplicationWindow {
                             Material.accent: primaryColor
                         }
 
-                        Item {
-                            Layout.fillWidth: true
-                        }
-
                         Button {
+                            //和GridLayout一样宽
+                            Layout.fillWidth: true
+                            Layout.columnSpan: 5
+
                             text: "💕 生成文本并自动复制"
                             Material.background: primaryColor
                             highlighted: true
