@@ -67,6 +67,17 @@ ApplicationWindow {
         generateMdTitle.showToast.connect(toastPopup.show)
     }
 
+    // 全局快捷键
+    Shortcut {
+        sequence: "Ctrl+Shift+Down"
+        onActivated: generateMdTitle.downTitleLevel()
+    }
+
+    Shortcut {
+        sequence: "Ctrl+Shift+Up"
+        onActivated: generateMdTitle.upTitleLevel()
+    }
+
     ColumnLayout {
         anchors.fill: parent
         spacing: 10

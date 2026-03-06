@@ -122,9 +122,10 @@ void GenerateMdTitle::downTitleLevel()
     QString clipboardText = clipboard->text();
     QString modifiedText = clipboardText;
 
-    if (clipboardText.contains("\n# "))
+    if (clipboardText.contains("\n# ")
+        ||clipboardText.startsWith("# "))//第一段可能没有\n,也应该判断1级标题
     {
-        showNotification("警告：已经是1级标题，无法降低");
+        showNotification("警告：包含1级标题，无法降低");
         return;
     }
     else if (!clipboardText.contains("# "))
@@ -152,9 +153,10 @@ void GenerateMdTitle::upTitleLevel()
     QString clipboardText = clipboard->text();
     QString modifiedText = clipboardText;
 
-    if (clipboardText.contains("\n###### "))
+    if (clipboardText.contains("\n###### ")
+        ||clipboardText.startsWith("###### "))//第一段可能没有\n,也应该判断6级标题
     {
-        showNotification("警告：已经是6级标题，无法提升");
+        showNotification("警告：包含6级标题，无法提升");
         return;
     }
     else if (!clipboardText.contains("# "))
